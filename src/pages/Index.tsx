@@ -18,6 +18,7 @@ const Index = () => {
       <ComoFunciona />
       <Campanhas />
       <HistoriasImpacto />
+      <CTASection />
       <Footer />
     </div>
   );
