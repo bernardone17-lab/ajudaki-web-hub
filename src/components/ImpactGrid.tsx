@@ -22,30 +22,10 @@ const AnimatedCard = ({ children, className, delay = 0 }: { children: React.Reac
 const ImpactGrid = () => {
   return (
     <section id="hero" className="container mx-auto px-4 pt-12 pb-16">
-      {/* Desktop layout */}
+      {/* Desktop layout — hero text INSIDE the grid */}
       <div className="hidden md:block max-w-[1100px] mx-auto">
-        {/* Hero text — full width centered above cards */}
-        <div className="text-center mb-6">
-          <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-4">
-            Conectamos quem ajuda<br />a quem mais precisa.
-          </h1>
-          <p className="text-sm lg:text-base text-muted-foreground max-w-lg mx-auto mb-6">
-            A Ajudaki é uma ponte segura entre doadores e causas sociais,
-            garantindo que cada contribuição chegue com transparência,
-            empatia e impacto real.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-11 rounded-full">
-              Fazer uma Doação
-            </Button>
-            <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-8 h-11 rounded-full">
-              Conhecer Causas
-            </Button>
-          </div>
-        </div>
+        <div className="grid grid-cols-[1.4fr_1fr_1.5fr_1fr_1.3fr] grid-rows-[300px_240px] gap-3">
 
-        {/* Mosaic grid — 5 columns, 2 rows */}
-        <div className="grid grid-cols-[1.4fr_1fr_1.2fr_1fr_1.2fr] grid-rows-[220px_220px] gap-3">
           {/* Col 1: Refeições — row-span-2 */}
           <AnimatedCard delay={0} className="relative rounded-2xl overflow-hidden row-span-2 group">
             <img src={impactMeals} alt="Refeições garantidas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
@@ -65,33 +45,28 @@ const ImpactGrid = () => {
             <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Saiba Mais →</a>
           </AnimatedCard>
 
-          {/* Col 3 Row 1: Árvores */}
-          <AnimatedCard delay={200} className="relative rounded-2xl overflow-hidden group">
-            <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
-            <div className="relative z-10 h-full flex flex-col justify-end p-5">
-              <p className="font-heading text-3xl font-extrabold text-white">+10.000</p>
-              <p className="text-white font-semibold text-xs">Árvores plantadas</p>
-              <p className="text-white/80 text-[11px] mt-1">Graças às pessoas<br />que acreditam no futuro.</p>
-              <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Saiba Mais</a>
+          {/* Col 3-4 Row 1: Hero text — col-span-2 */}
+          <div className="col-span-2 flex flex-col items-center justify-center text-center px-4">
+            <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-3">
+              Conectamos quem ajuda<br />a quem mais precisa.
+            </h1>
+            <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto mb-4">
+              A Ajudaki é uma ponte segura entre doadores e causas sociais,
+              garantindo que cada contribuição chegue com transparência,
+              empatia e impacto real.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-11 rounded-full">
+                Fazer uma Doação
+              </Button>
+              <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-8 h-11 rounded-full">
+                Conhecer Causas
+              </Button>
             </div>
-          </AnimatedCard>
+          </div>
 
-          {/* Col 4 Row 1: Esportes com CTA */}
-          <AnimatedCard delay={300} className="relative rounded-2xl overflow-hidden group">
-            <img src={impactSports} alt="Esportes" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="relative z-10 h-full flex flex-col justify-end p-4">
-              <p className="text-white/90 text-[11px] mb-2">Com sua ajuda, o jogo continua.</p>
-              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-2">
-                <span className="text-foreground text-[11px] font-semibold flex-1 leading-tight">Apoie o retorno do João ao futebol</span>
-                <a href="#" className="bg-accent hover:bg-accent/90 text-white rounded-full h-8 w-8 flex items-center justify-center text-sm font-bold transition-colors shrink-0">→</a>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Col 5 Row 1: Emergência — phone style */}
-          <AnimatedCard delay={150} className="relative rounded-[2rem] overflow-hidden group row-span-2">
+          {/* Col 5 Row 1: Emergência */}
+          <AnimatedCard delay={150} className="relative rounded-[2rem] overflow-hidden group">
             <img src={impactFamilies} alt="Emergência" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
             <div className="relative z-10 h-full flex flex-col justify-between p-4">
@@ -130,19 +105,37 @@ const ImpactGrid = () => {
             </div>
           </AnimatedCard>
 
-          {/* Col 3 Row 2: empty or additional — match reference shows this merged */}
-          {/* In reference: col 3 row 2 seems to be part of trees or a separate card */}
-          {/* Reference shows: hands | trees spans both? No — separate cards */}
-          {/* Col 3 Row 2 is blank in reference or part of layout */}
+          {/* Col 3 Row 2: Árvores */}
+          <AnimatedCard delay={250} className="relative rounded-2xl overflow-hidden group">
+            <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
+            <div className="relative z-10 h-full flex flex-col justify-end p-5">
+              <p className="font-heading text-3xl font-extrabold text-white">+10.000</p>
+              <p className="text-white font-semibold text-xs">Árvores plantadas</p>
+              <p className="text-white/80 text-[11px] mt-1">Graças às pessoas<br />que acreditam no futuro.</p>
+              <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Saiba Mais</a>
+            </div>
+          </AnimatedCard>
 
-          {/* Col 3-4 Row 2: +50.000 roxo sólido */}
-          <AnimatedCard delay={350} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-5 col-span-2">
+          {/* Col 4 Row 2: Esportes com CTA */}
+          <AnimatedCard delay={300} className="relative rounded-2xl overflow-hidden group">
+            <img src={impactSports} alt="Esportes" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="relative z-10 h-full flex flex-col justify-end p-4">
+              <p className="text-white/90 text-[11px] mb-2">Com sua ajuda, o jogo continua.</p>
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-2">
+                <span className="text-foreground text-[11px] font-semibold flex-1 leading-tight">Apoie o retorno do João ao futebol</span>
+                <a href="#" className="bg-accent hover:bg-accent/90 text-white rounded-full h-8 w-8 flex items-center justify-center text-sm font-bold transition-colors shrink-0">→</a>
+              </div>
+            </div>
+          </AnimatedCard>
+
+          {/* Col 5 Row 2: +50.000 roxo sólido */}
+          <AnimatedCard delay={350} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-5">
             <p className="font-heading text-3xl font-extrabold text-white">+50.000</p>
             <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Pessoas apoiadas por campanhas verificadas pela Ajudaki. ✅</p>
             <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
           </AnimatedCard>
-
-          {/* Col 5 Row 2 is taken by emergency row-span-2 */}
         </div>
       </div>
 
