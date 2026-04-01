@@ -23,7 +23,7 @@ const ImpactGrid = () => {
   return (
     <section id="hero" className="container mx-auto px-4 pt-20 pb-20">
       {/* Desktop: integrated hero + mosaic */}
-      <div className="hidden md:grid grid-cols-5 grid-rows-[280px_280px] gap-4 max-w-6xl mx-auto">
+      <div className="hidden md:grid grid-cols-[1.2fr_1fr_1fr_1fr_1fr] grid-rows-[240px_240px] gap-3 max-w-6xl mx-auto">
 
         {/* Col 1: Refeições — row-span-2 */}
         <AnimatedCard delay={0} className="relative rounded-2xl overflow-hidden row-span-2 group">
