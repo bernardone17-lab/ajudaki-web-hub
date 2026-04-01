@@ -66,7 +66,11 @@ const ImpactGrid = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end p-6">
             <p className="text-primary-foreground/90 text-xs">Com sua ajuda, crianças têm acesso a esporte e educação.</p>
-            <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
+            {/* Mini CTA overlay */}
+            <div className="mt-3 bg-card/90 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3">
+              <span className="text-foreground text-xs font-semibold flex-1">Seja + um Apoiador</span>
+              <a href="#" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full h-8 w-8 flex items-center justify-center text-lg font-bold transition-colors">→</a>
+            </div>
           </div>
         </AnimatedCard>
 
