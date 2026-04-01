@@ -75,7 +75,7 @@ const ImpactGrid = () => {
         </AnimatedCard>
 
         {/* Card 5: Emergency */}
-        <AnimatedCard delay={150} className="relative rounded-2xl overflow-hidden bg-card border border-border">
+        <AnimatedCard delay={150} className="relative rounded-3xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-between p-5">
             <div>
               <span className="inline-block bg-destructive/10 text-destructive text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2">Emergência</span>
