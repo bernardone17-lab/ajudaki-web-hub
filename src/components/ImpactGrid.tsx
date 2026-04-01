@@ -24,7 +24,7 @@ const ImpactGrid = () => {
     <section id="hero" className="container mx-auto px-4 pt-12 pb-16">
       {/* Desktop layout — hero text INSIDE the grid */}
       <div className="hidden md:block max-w-[1100px] mx-auto">
-        <div className="grid grid-cols-[1.4fr_1fr_1.5fr_1fr_1.3fr] grid-rows-[300px_240px] gap-3">
+        <div className="grid grid-cols-[1.3fr_0.9fr_1.8fr_0.9fr_1.2fr] grid-rows-[300px_240px] gap-3">
 
           {/* Col 1: Refeições — row-span-2 */}
           <AnimatedCard delay={0} className="relative rounded-2xl overflow-hidden row-span-2 group">
