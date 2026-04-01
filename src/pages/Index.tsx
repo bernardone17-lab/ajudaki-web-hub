@@ -1,6 +1,5 @@
 import TopBanner from "@/components/TopBanner";
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
 import ImpactGrid from "@/components/ImpactGrid";
 import ComoFunciona from "@/components/ComoFunciona";
 import Campanhas from "@/components/Campanhas";
@@ -13,7 +12,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <TopBanner />
       <Navbar />
-      <HeroSection />
+      
       <ImpactGrid />
       <ComoFunciona />
       <Campanhas />
