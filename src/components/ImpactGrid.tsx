@@ -7,7 +7,7 @@ import impactSports from "@/assets/impact-sports.jpg";
 import { useInView } from "@/hooks/use-in-view";
 
 const AnimatedCard = ({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isInView } = useInView(0.15);
+  const { ref, isInView } = useInView(0.05);
   return (
     <div
       ref={ref}
