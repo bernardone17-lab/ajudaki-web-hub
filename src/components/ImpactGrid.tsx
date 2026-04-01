@@ -7,7 +7,7 @@ import impactSports from "@/assets/impact-sports.jpg";
 import { useInView } from "@/hooks/use-in-view";
 
 const AnimatedCard = ({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isInView } = useInView(0.15);
+  const { ref, isInView } = useInView(0.05);
   return (
     <div
       ref={ref}
@@ -24,7 +24,7 @@ const ImpactGrid = () => {
     <section id="hero" className="container mx-auto px-4 pt-12 pb-16">
       {/* Desktop layout — hero text INSIDE the grid */}
       <div className="hidden md:block max-w-[1100px] mx-auto">
-        <div className="grid grid-cols-[1.4fr_1fr_1.5fr_1fr_1.3fr] grid-rows-[300px_240px] gap-3">
+        <div className="grid grid-cols-[1.3fr_0.9fr_1.8fr_0.9fr_1.2fr] grid-rows-[300px_240px] gap-3">
 
           {/* Col 1: Refeições — row-span-2 */}
           <AnimatedCard delay={0} className="relative rounded-2xl overflow-hidden row-span-2 group">
@@ -39,27 +39,29 @@ const ImpactGrid = () => {
           </AnimatedCard>
 
           {/* Col 2 Row 1: +12.000 Famílias — roxo sólido */}
-          <AnimatedCard delay={100} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-5">
-            <p className="font-heading text-3xl font-extrabold text-white">+12.000</p>
-            <p className="text-white/90 text-xs mt-1 leading-relaxed">Famílias foram ajudadas com muitas doações voluntárias.</p>
-            <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Saiba Mais →</a>
+          <AnimatedCard delay={100} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-4">
+            <div className="mt-auto">
+              <p className="font-heading text-2xl font-extrabold text-white">+12.000</p>
+              <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Famílias foram ajudadas com muitas doações voluntárias.</p>
+              <a href="#" className="text-accent text-[11px] font-semibold mt-2 inline-block hover:underline">Saiba Mais →</a>
+            </div>
           </AnimatedCard>
 
           {/* Col 3-4 Row 1: Hero text — col-span-2 */}
-          <div className="col-span-2 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-3">
+          <div className="col-span-2 flex flex-col items-center justify-center text-center px-2">
+            <h1 className="font-heading text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-2">
               Conectamos quem ajuda<br />a quem mais precisa.
             </h1>
-            <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto mb-4">
+            <p className="text-xs lg:text-sm text-muted-foreground max-w-sm mx-auto mb-3">
               A Ajudaki é uma ponte segura entre doadores e causas sociais,
               garantindo que cada contribuição chegue com transparência,
               empatia e impacto real.
             </p>
-            <div className="flex justify-center gap-4">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-11 rounded-full">
+            <div className="flex justify-center gap-3">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 h-10 rounded-full text-sm">
                 Fazer uma Doação
               </Button>
-              <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-8 h-11 rounded-full">
+              <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-6 h-10 rounded-full text-sm">
                 Conhecer Causas
               </Button>
             </div>
@@ -68,7 +70,7 @@ const ImpactGrid = () => {
           {/* Col 5 Row 1: Emergência */}
           <AnimatedCard delay={150} className="relative rounded-[2rem] overflow-hidden group">
             <img src={impactFamilies} alt="Emergência" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/5" />
             <div className="relative z-10 h-full flex flex-col justify-between p-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1 bg-primary/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
