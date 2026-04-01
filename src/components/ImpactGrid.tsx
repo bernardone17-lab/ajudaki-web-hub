@@ -1,68 +1,112 @@
+import { Progress } from "@/components/ui/progress";
 import impactMeals from "@/assets/impact-meals.jpg";
 import impactFamilies from "@/assets/impact-families.jpg";
 import impactTrees from "@/assets/impact-trees.jpg";
+import impactSports from "@/assets/impact-sports.jpg";
 import impactPeople from "@/assets/impact-people.jpg";
-
-const stats = [
-  {
-    number: "+18.500",
-    label: "refeições distribuídas",
-    image: impactMeals,
-    overlay: "from-primary/80 to-primary-dark/70",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    number: "+12.000",
-    label: "famílias assistidas",
-    image: impactFamilies,
-    overlay: "from-accent/80 to-accent/60",
-    className: "md:col-span-1",
-  },
-  {
-    number: "+10.000",
-    label: "árvores plantadas",
-    image: impactTrees,
-    overlay: "from-primary-dark/80 to-primary/60",
-    className: "md:col-span-1",
-  },
-  {
-    number: "+50.000",
-    label: "pessoas impactadas",
-    image: impactPeople,
-    overlay: "from-accent/70 to-primary/60",
-    className: "md:col-span-2",
-  },
-];
 
 const ImpactGrid = () => {
   return (
-    <section className="container mx-auto px-4 py-16">
-      <h2 className="font-heading text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
-        Nosso Impacto
-      </h2>
-      <p className="text-muted-foreground text-center mb-10 max-w-xl mx-auto">
-        Com a ajuda de milhares de doadores, transformamos vidas todos os dias.
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className={`relative rounded-2xl overflow-hidden min-h-[200px] flex items-end p-6 group ${stat.className}`}
-          >
-            <img
-              src={stat.image}
-              alt={stat.label}
-              loading="lazy"
-              width={800}
-              height={600}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className={`absolute inset-0 bg-gradient-to-t ${stat.overlay}`} />
+    <section className="container mx-auto px-4 pb-16">
+      {/* Desktop mosaic */}
+      <div className="hidden md:grid grid-cols-5 grid-rows-2 gap-3 max-w-6xl mx-auto" style={{ gridAutoRows: "220px" }}>
+        {/* Card 1: Refeições - col 1, spans 2 rows */}
+        <div className="relative rounded-2xl overflow-hidden row-span-2 group">
+          <img src={impactMeals} alt="Refeições distribuídas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-primary/30" />
+          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+            <p className="font-heading text-4xl font-extrabold text-primary-foreground">+18.500</p>
+            <p className="text-primary-foreground font-semibold text-sm">refeições distribuídas</p>
+            <p className="text-primary-foreground/80 text-xs mt-1">Com a sua ajuda, mais mesas seguem cheias.</p>
+            <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Doe Agora →</a>
+          </div>
+        </div>
+
+        {/* Card 2: Famílias - col 2, row 1 */}
+        <div className="relative rounded-2xl overflow-hidden group">
+          <img src={impactFamilies} alt="Famílias assistidas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={512} />
+          <div className="absolute inset-0 bg-gradient-to-t from-accent/85 via-accent/50 to-accent/20" />
+          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+            <p className="font-heading text-3xl font-extrabold text-primary-foreground">+12.000</p>
+            <p className="text-primary-foreground font-semibold text-xs">Famílias assistidas</p>
+            <a href="#" className="text-primary-foreground text-xs font-semibold mt-2 hover:underline">Saiba Mais →</a>
+          </div>
+        </div>
+
+        {/* Card 3: Árvores - col 3, spans 2 rows */}
+        <div className="relative rounded-2xl overflow-hidden row-span-2 group">
+          <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary-dark))]/90 via-primary/50 to-primary/20" />
+          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+            <p className="font-heading text-4xl font-extrabold text-primary-foreground">+10.000</p>
+            <p className="text-primary-foreground font-semibold text-sm">árvores plantadas</p>
+            <p className="text-primary-foreground/80 text-xs mt-1">Cada muda é um passo para o futuro.</p>
+            <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Saiba Mais →</a>
+          </div>
+        </div>
+
+        {/* Card 4: Esportes/Atividades - col 4, spans 2 rows */}
+        <div className="relative rounded-2xl overflow-hidden row-span-2 group">
+          <img src={impactSports} alt="Atividades comunitárias" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+            <p className="text-primary-foreground/90 text-xs">Com sua ajuda, crianças têm acesso a esporte e educação.</p>
+            <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
+          </div>
+        </div>
+
+        {/* Card 5: Story Emergency - col 5, row 1 */}
+        <div className="relative rounded-2xl overflow-hidden bg-card border border-border">
+          <div className="h-full flex flex-col justify-between p-5">
+            <div>
+              <span className="inline-block bg-destructive/10 text-destructive text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2">Emergência</span>
+              <p className="font-heading text-sm font-bold text-foreground leading-snug">Enchentes no RS: famílias precisam de abrigo</p>
+            </div>
+            <div>
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                <span>R$ 48.000</span>
+                <span>80%</span>
+              </div>
+              <Progress value={80} className="h-2" />
+              <a href="#" className="text-primary text-xs font-semibold mt-2 inline-block hover:underline">Ajudar Agora →</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Card 6: Hands/Support - col 2, row 2 */}
+        <div className="relative rounded-2xl overflow-hidden bg-card border border-border">
+          <div className="h-full flex flex-col justify-end p-5">
+            <p className="font-heading text-xs font-bold text-foreground leading-snug mb-1">Sua ajuda transforma vidas todos os dias</p>
+            <p className="text-muted-foreground text-[11px]">Doe para causas verificadas com total transparência.</p>
+            <a href="#" className="text-primary text-xs font-semibold mt-2 hover:underline">Comece Agora →</a>
+          </div>
+        </div>
+
+        {/* Card 7: Pessoas impactadas - col 5, row 2 */}
+        <div className="relative rounded-2xl overflow-hidden group">
+          <img src={impactPeople} alt="Pessoas impactadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={512} />
+          <div className="absolute inset-0 bg-gradient-to-t from-accent/85 via-accent/40 to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+            <p className="font-heading text-3xl font-extrabold text-primary-foreground">+50.000</p>
+            <p className="text-primary-foreground font-semibold text-xs">pessoas impactadas</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile stacked layout */}
+      <div className="md:hidden grid grid-cols-2 gap-3">
+        {[
+          { img: impactMeals, num: "+18.500", label: "refeições distribuídas", overlay: "from-primary/90 to-primary/40" },
+          { img: impactFamilies, num: "+12.000", label: "famílias assistidas", overlay: "from-accent/85 to-accent/30" },
+          { img: impactTrees, num: "+10.000", label: "árvores plantadas", overlay: "from-primary/90 to-primary/40" },
+          { img: impactPeople, num: "+50.000", label: "pessoas impactadas", overlay: "from-accent/85 to-accent/30" },
+        ].map((item) => (
+          <div key={item.label} className="relative rounded-2xl overflow-hidden min-h-[180px] flex items-end p-4">
+            <img src={item.img} alt={item.label} className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={400} height={300} />
+            <div className={`absolute inset-0 bg-gradient-to-t ${item.overlay}`} />
             <div className="relative z-10">
-              <p className="font-heading text-3xl md:text-4xl font-extrabold text-primary-foreground">
-                {stat.number}
-              </p>
-              <p className="text-primary-foreground/90 text-sm font-medium">{stat.label}</p>
+              <p className="font-heading text-2xl font-extrabold text-primary-foreground">{item.num}</p>
+              <p className="text-primary-foreground/90 text-xs font-medium">{item.label}</p>
             </div>
           </div>
         ))}
