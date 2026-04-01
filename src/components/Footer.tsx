@@ -1,9 +1,11 @@
+import logoHorizontal from "@/assets/logo-horizontal.png";
+
 const Footer = () => (
   <footer className="bg-foreground text-background py-12">
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div>
-          <h3 className="font-heading text-xl font-bold mb-3">ajudaki</h3>
+          <img src={logoHorizontal} alt="Ajudaki" className="h-8 brightness-0 invert mb-3" />
           <p className="text-background/60 text-sm">
             Conectamos quem ajuda a quem mais precisa, com transparência e impacto real.
           </p>

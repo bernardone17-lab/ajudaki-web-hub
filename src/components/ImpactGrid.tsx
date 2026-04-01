@@ -1,4 +1,5 @@
 import { Progress } from "@/components/ui/progress";
+import coracaoPuzzle from "@/assets/coracao-puzzle.png";
 import impactMeals from "@/assets/impact-meals.jpg";
 import impactFamilies from "@/assets/impact-families.jpg";
 import impactTrees from "@/assets/impact-trees.jpg";
@@ -7,14 +8,14 @@ import impactPeople from "@/assets/impact-people.jpg";
 
 const ImpactGrid = () => {
   return (
-    <section className="container mx-auto px-4 pb-16">
+    <section className="container mx-auto px-4 pb-20">
       {/* Desktop mosaic */}
-      <div className="hidden md:grid grid-cols-5 grid-rows-2 gap-3 max-w-6xl mx-auto" style={{ gridAutoRows: "220px" }}>
+      <div className="hidden md:grid grid-cols-5 grid-rows-2 gap-4 max-w-6xl mx-auto" style={{ gridAutoRows: "240px" }}>
         {/* Card 1: Refeições - col 1, spans 2 rows */}
         <div className="relative rounded-2xl overflow-hidden row-span-2 group">
           <img src={impactMeals} alt="Refeições distribuídas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-primary/30" />
-          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6">
             <p className="font-heading text-4xl font-extrabold text-primary-foreground">+18.500</p>
             <p className="text-primary-foreground font-semibold text-sm">refeições distribuídas</p>
             <p className="text-primary-foreground/80 text-xs mt-1">Com a sua ajuda, mais mesas seguem cheias.</p>
@@ -37,7 +38,7 @@ const ImpactGrid = () => {
         <div className="relative rounded-2xl overflow-hidden row-span-2 group">
           <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary-dark))]/90 via-primary/50 to-primary/20" />
-          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6">
             <p className="font-heading text-4xl font-extrabold text-primary-foreground">+10.000</p>
             <p className="text-primary-foreground font-semibold text-sm">árvores plantadas</p>
             <p className="text-primary-foreground/80 text-xs mt-1">Cada muda é um passo para o futuro.</p>
@@ -45,17 +46,17 @@ const ImpactGrid = () => {
           </div>
         </div>
 
-        {/* Card 4: Esportes/Atividades - col 4, spans 2 rows */}
+        {/* Card 4: Esportes - col 4, spans 2 rows */}
         <div className="relative rounded-2xl overflow-hidden row-span-2 group">
           <img src={impactSports} alt="Atividades comunitárias" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={800} />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
-          <div className="relative z-10 h-full flex flex-col justify-end p-5">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6">
             <p className="text-primary-foreground/90 text-xs">Com sua ajuda, crianças têm acesso a esporte e educação.</p>
             <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
           </div>
         </div>
 
-        {/* Card 5: Story Emergency - col 5, row 1 */}
+        {/* Card 5: Emergency - col 5, row 1 */}
         <div className="relative rounded-2xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-between p-5">
             <div>
@@ -73,9 +74,10 @@ const ImpactGrid = () => {
           </div>
         </div>
 
-        {/* Card 6: Hands/Support - col 2, row 2 */}
+        {/* Card 6: Hands/Support with heart icon - col 2, row 2 */}
         <div className="relative rounded-2xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-end p-5">
+            <img src={coracaoPuzzle} alt="" className="h-8 w-8 object-contain mb-2 opacity-80" />
             <p className="font-heading text-xs font-bold text-foreground leading-snug mb-1">Sua ajuda transforma vidas todos os dias</p>
             <p className="text-muted-foreground text-[11px]">Doe para causas verificadas com total transparência.</p>
             <a href="#" className="text-primary text-xs font-semibold mt-2 hover:underline">Comece Agora →</a>
@@ -94,14 +96,14 @@ const ImpactGrid = () => {
       </div>
 
       {/* Mobile stacked layout */}
-      <div className="md:hidden grid grid-cols-2 gap-3">
+      <div className="md:hidden grid grid-cols-2 gap-4">
         {[
           { img: impactMeals, num: "+18.500", label: "refeições distribuídas", overlay: "from-primary/90 to-primary/40" },
           { img: impactFamilies, num: "+12.000", label: "famílias assistidas", overlay: "from-accent/85 to-accent/30" },
           { img: impactTrees, num: "+10.000", label: "árvores plantadas", overlay: "from-primary/90 to-primary/40" },
           { img: impactPeople, num: "+50.000", label: "pessoas impactadas", overlay: "from-accent/85 to-accent/30" },
         ].map((item) => (
-          <div key={item.label} className="relative rounded-2xl overflow-hidden min-h-[180px] flex items-end p-4">
+          <div key={item.label} className="relative rounded-2xl overflow-hidden min-h-[200px] flex items-end p-4">
             <img src={item.img} alt={item.label} className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={400} height={300} />
             <div className={`absolute inset-0 bg-gradient-to-t ${item.overlay}`} />
             <div className="relative z-10">

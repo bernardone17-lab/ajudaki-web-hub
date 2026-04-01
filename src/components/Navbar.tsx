@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const navLinks = [
   { label: "Sobre", href: "#hero" },
@@ -30,8 +31,8 @@ const Navbar = () => {
         </ul>
 
         {/* Logo */}
-        <a href="#" className="font-heading text-2xl font-extrabold text-primary tracking-tight">
-          ajudaki
+        <a href="#" className="flex items-center">
+          <img src={logoHorizontal} alt="Ajudaki" className="h-8" />
         </a>
 
         {/* Right buttons - desktop */}
