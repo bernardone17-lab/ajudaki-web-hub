@@ -48,20 +48,20 @@ const ImpactGrid = () => {
           </AnimatedCard>
 
           {/* Col 3-4 Row 1: Hero text — col-span-2 */}
-          <div className="col-span-2 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="font-heading text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-3">
+          <div className="col-span-2 flex flex-col items-center justify-center text-center px-2">
+            <h1 className="font-heading text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-2">
               Conectamos quem ajuda<br />a quem mais precisa.
             </h1>
-            <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto mb-4">
+            <p className="text-xs lg:text-sm text-muted-foreground max-w-sm mx-auto mb-3">
               A Ajudaki é uma ponte segura entre doadores e causas sociais,
               garantindo que cada contribuição chegue com transparência,
               empatia e impacto real.
             </p>
-            <div className="flex justify-center gap-4">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-11 rounded-full">
+            <div className="flex justify-center gap-3">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 h-10 rounded-full text-sm">
                 Fazer uma Doação
               </Button>
-              <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-8 h-11 rounded-full">
+              <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/5 font-semibold px-6 h-10 rounded-full text-sm">
                 Conhecer Causas
               </Button>
             </div>
