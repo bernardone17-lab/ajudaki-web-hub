@@ -25,7 +25,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileTransparencia, setMobileTransparencia] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
