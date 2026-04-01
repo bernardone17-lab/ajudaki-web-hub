@@ -93,7 +93,7 @@ const ImpactGrid = () => {
         </AnimatedCard>
 
         {/* Card 6: Heart/Support */}
-        <AnimatedCard delay={250} className="relative rounded-2xl overflow-hidden bg-card border border-border">
+        <AnimatedCard delay={250} className="relative rounded-3xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-end p-5">
             <img src={coracaoPuzzle} alt="" className="h-8 w-8 object-contain mb-2 opacity-80" />
             <p className="font-heading text-xs font-bold text-foreground leading-snug mb-1">Sua ajuda transforma vidas todos os dias</p>
