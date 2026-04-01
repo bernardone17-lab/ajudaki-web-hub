@@ -1,39 +1,31 @@
 
 
-# Melhorar Disposição e Adicionar Logos/Ícones Oficiais
+# 4 Melhorias: Verificação, Favicon, Animações e Seção CTA
 
-## O que muda
+## 1. Verificar logos e ícones
+Os componentes já referenciam os assets corretos (`logo-horizontal.png`, `coracao-puzzle.png`). Console sem erros. Os assets foram criados no último edit. Se algum não carregar, será visível no preview — sem mudança de código necessária aqui.
 
-### 1. Adicionar assets oficiais ao projeto
-- Copiar o logo horizontal roxo (`Ajudaki_Horizontal_-_14_1.png`) para usar na Navbar e Footer
-- Copiar o ícone (`Ícone_-_1-100.jpg`) para usar como favicon e elemento decorativo
-- Copiar o coração puzzle (`Coração_-_1.png`) para usar como elemento visual no Hero
+## 2. Atualizar favicon com ícone oficial
+- Copiar `user-uploads://Ícone_-_1-100.jpg` para `public/favicon.jpg`
+- Remover `public/favicon.ico` se existir
+- Atualizar `index.html` com `<link rel="icon" href="/favicon.jpg" type="image/jpeg">`
 
-### 2. Navbar — usar logo oficial
-- Substituir o texto "ajudaki" pelo logo horizontal (`Ajudaki_Horizontal_-_14_1.png`) com altura ~32px
-- Manter a mesma estrutura de links e botões
+## 3. Animações nos cards do mosaico (sem framer-motion)
+Em vez de adicionar uma dependência, usar **Intersection Observer** com CSS animations já disponíveis no projeto (`animate-fade-in`):
+- Criar um hook `useInView` simples
+- Aplicar classes `opacity-0` → `animate-fade-in` com delays escalonados nos cards do `ImpactGrid`
+- Cada card aparece com um leve delay incremental (0ms, 100ms, 200ms...)
 
-### 3. HeroSection — melhorar disposição
-- Adicionar o ícone/coração puzzle como elemento decorativo acima ou ao lado do título
-- Aumentar o espaçamento vertical para respirar mais
-- Manter layout centralizado conforme a referência pagina_82
-
-### 4. ImpactGrid — melhorar disposição do mosaico
-- Ajustar alturas dos cards para ficarem mais proporcionais (aumentar `gridAutoRows`)
-- Melhorar o espaçamento entre cards (`gap-4` em vez de `gap-3`)
-- Adicionar o coração puzzle como detalhe em algum card de texto (card 6)
-
-### 5. TopBanner — adicionar ícone do coração
-- Substituir o emoji 🤝 pelo coração puzzle como mini ícone inline
-
-### 6. Footer — usar logo oficial
-- Substituir texto "ajudaki" pelo logo horizontal (versão branca/clara ou o mesmo com filtro)
+## 4. Nova seção CTA abaixo de Histórias de Impacto
+- Criar `src/components/CTASection.tsx`
+- Background roxo/primary com texto branco centralizado
+- Frase: "Cada gesto conta. Comece a transformar vidas agora."
+- Dois botões iguais ao Hero: "Fazer uma Doação" (branco filled) + "Conhecer Causas" (outline branco)
+- Adicionar ao `Index.tsx` entre `HistoriasImpacto` e `Footer`
 
 ## Arquivos modificados
-- `src/components/Navbar.tsx` — logo img
-- `src/components/HeroSection.tsx` — coração decorativo + espaçamento
-- `src/components/ImpactGrid.tsx` — melhor grid spacing
-- `src/components/TopBanner.tsx` — ícone coração
-- `src/components/Footer.tsx` — logo img
-- Copiar 3 assets para `src/assets/`
+- `index.html` — favicon
+- `src/components/ImpactGrid.tsx` — animações de entrada
+- `src/components/CTASection.tsx` — novo componente
+- `src/pages/Index.tsx` — incluir CTASection
 
