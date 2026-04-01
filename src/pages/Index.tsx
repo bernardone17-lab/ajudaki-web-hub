@@ -5,6 +5,7 @@ import ImpactGrid from "@/components/ImpactGrid";
 import ComoFunciona from "@/components/ComoFunciona";
 import Campanhas from "@/components/Campanhas";
 import HistoriasImpacto from "@/components/HistoriasImpacto";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
