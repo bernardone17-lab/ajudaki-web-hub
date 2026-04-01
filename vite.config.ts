@@ -18,7 +18,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  optimizeDeps: {
-    exclude: ["react", "react-dom", "react-dom/client"],
-  },
 }));
