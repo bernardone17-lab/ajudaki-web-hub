@@ -46,12 +46,12 @@ const ImpactGrid = () => {
           </div>
         </AnimatedCard>
 
-        {/* Col 3 Row 1: HERO TEXT (spans col 3) */}
-        <div className="flex flex-col items-center justify-center text-center px-4">
-          <h1 className="font-heading text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-4">
+        {/* Col 3-4 Row 1: HERO TEXT (spans 2 cols) */}
+        <div className="col-span-2 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="font-heading text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-3">
             Conectamos quem ajuda a quem mais precisa.
           </h1>
-          <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-6">
+          <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-4">
             A Ajudaki é uma ponte segura entre doadores e causas sociais, garantindo que cada contribuição chegue com transparência.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -63,9 +63,6 @@ const ImpactGrid = () => {
             </Button>
           </div>
         </div>
-
-        {/* Col 4 Row 1: empty spacer — hero text visually extends */}
-        <div />
 
         {/* Col 5 Row 1: Emergência — rounded phone style */}
         <AnimatedCard delay={200} className="relative rounded-[2rem] overflow-hidden group">
