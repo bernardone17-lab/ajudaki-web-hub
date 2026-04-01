@@ -66,12 +66,16 @@ const ImpactGrid = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end p-6">
             <p className="text-primary-foreground/90 text-xs">Com sua ajuda, crianças têm acesso a esporte e educação.</p>
-            <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
+            {/* Mini CTA overlay */}
+            <div className="mt-3 bg-card/90 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3">
+              <span className="text-foreground text-xs font-semibold flex-1">Seja + um Apoiador</span>
+              <a href="#" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full h-8 w-8 flex items-center justify-center text-lg font-bold transition-colors">→</a>
+            </div>
           </div>
         </AnimatedCard>
 
         {/* Card 5: Emergency */}
-        <AnimatedCard delay={150} className="relative rounded-2xl overflow-hidden bg-card border border-border">
+        <AnimatedCard delay={150} className="relative rounded-3xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-between p-5">
             <div>
               <span className="inline-block bg-destructive/10 text-destructive text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2">Emergência</span>
@@ -89,7 +93,7 @@ const ImpactGrid = () => {
         </AnimatedCard>
 
         {/* Card 6: Heart/Support */}
-        <AnimatedCard delay={250} className="relative rounded-2xl overflow-hidden bg-card border border-border">
+        <AnimatedCard delay={250} className="relative rounded-3xl overflow-hidden bg-card border border-border">
           <div className="h-full flex flex-col justify-end p-5">
             <img src={coracaoPuzzle} alt="" className="h-8 w-8 object-contain mb-2 opacity-80" />
             <p className="font-heading text-xs font-bold text-foreground leading-snug mb-1">Sua ajuda transforma vidas todos os dias</p>

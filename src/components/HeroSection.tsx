@@ -1,15 +1,9 @@
 import { Button } from "@/components/ui/button";
-import coracaoPuzzle from "@/assets/coracao-puzzle.png";
 
 const HeroSection = () => {
   return (
     <section id="hero" className="bg-background pt-20 pb-14">
       <div className="container mx-auto px-4 text-center max-w-3xl">
-        <img
-          src={coracaoPuzzle}
-          alt="Coração Ajudaki"
-          className="h-16 w-16 mx-auto mb-6 object-contain"
-        />
         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight mb-6">
           Conectamos quem ajuda a quem mais precisa.
         </h1>

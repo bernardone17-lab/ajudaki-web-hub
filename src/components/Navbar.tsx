@@ -1,14 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Info, Shield, Megaphone, FileText, Cookie, HelpCircle, Target } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Info, Shield, Megaphone, FileText, Cookie, HelpCircle, Target } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const navLinks = [
   { label: "Sobre", href: "#hero" },
   { label: "Como Funciona", href: "#como-funciona" },
-  { label: "Campanhas", href: "#campanhas" },
-  { label: "Impacto", href: "#impacto" },
+  { label: "Depoimentos", href: "#impacto" },
 ];
 
 const transparenciaLinks = [
@@ -39,7 +38,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+      <div className="container mx-auto flex items-center justify-between h-16 px-4 relative">
         {/* Left links - desktop */}
         <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -86,21 +85,24 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Logo */}
-        <Link to="/" className="flex items-center">
+        {/* Logo - centered */}
+        <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center">
           <img src={logoHorizontal} alt="Ajudaki" className="h-8" />
         </Link>
 
         {/* Right buttons - desktop */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="outline" size="sm">
-            Acessar Conta
-          </Button>
+          <button className="text-muted-foreground hover:text-primary transition-colors p-2">
+            <Search className="h-5 w-5" />
+          </button>
           <Button size="sm">Criar Conta</Button>
+          <Button variant="outline" size="sm">
+            Acessa sua Conta
+          </Button>
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-foreground ml-auto" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -119,7 +121,6 @@ const Navbar = () => {
             </a>
           ))}
 
-          {/* Mobile transparência accordion */}
           <button
             onClick={() => setMobileTransparencia(!mobileTransparencia)}
             className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary py-1"
@@ -144,11 +145,11 @@ const Navbar = () => {
           )}
 
           <div className="flex gap-2 pt-2">
-            <Button variant="outline" size="sm" className="flex-1">
-              Acessar Conta
-            </Button>
             <Button size="sm" className="flex-1">
               Criar Conta
+            </Button>
+            <Button variant="outline" size="sm" className="flex-1">
+              Acessa sua Conta
             </Button>
           </div>
         </div>
