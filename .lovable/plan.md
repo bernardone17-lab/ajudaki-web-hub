@@ -1,60 +1,39 @@
 
 
-# Redesign Hero Section to Match Reference Image
+# Melhorar Disposição e Adicionar Logos/Ícones Oficiais
 
-## What Changes
+## O que muda
 
-The current hero has a dark full-width background image with left-aligned text. The reference image (pagina_82) shows a completely different layout:
+### 1. Adicionar assets oficiais ao projeto
+- Copiar o logo horizontal roxo (`Ajudaki_Horizontal_-_14_1.png`) para usar na Navbar e Footer
+- Copiar o ícone (`Ícone_-_1-100.jpg`) para usar como favicon e elemento decorativo
+- Copiar o coração puzzle (`Coração_-_1.png`) para usar como elemento visual no Hero
 
-### New Hero Layout
-- **Light background** (the site's `#f2f0fc` background) — no dark photo overlay
-- **Centered text**: title "Conectamos quem ajuda a quem mais precisa." centered, bold, dark text
-- **Centered subtitle**: "A Ajudaki é uma ponte segura entre doadores e causas sociais, garantindo que cada contribuição chegue com transparência, empatia e impacto real."
-- **Two centered CTAs**: "Fazer uma Doação" (purple filled) + "Conhecer Causas" (outline)
+### 2. Navbar — usar logo oficial
+- Substituir o texto "ajudaki" pelo logo horizontal (`Ajudaki_Horizontal_-_14_1.png`) com altura ~32px
+- Manter a mesma estrutura de links e botões
 
-### Impact Mosaic Integrated Into Hero
-The reference shows the impact grid as part of the hero area, not a separate section. The layout is a **5-column mosaic**:
+### 3. HeroSection — melhorar disposição
+- Adicionar o ícone/coração puzzle como elemento decorativo acima ou ao lado do título
+- Aumentar o espaçamento vertical para respirar mais
+- Manter layout centralizado conforme a referência pagina_82
 
-```text
-┌──────────┬──────────┬──────────┬──────────┬──────────┐
-│          │ +12.000  │          │          │ EMERGÊN- │
-│ +18.500  │ Famílias │  (tree   │ (sports  │ CIA 80%  │
-│ refeições│          │  photo)  │  photo)  │          │
-│ (2 rows) │──────────│ +10.000  │          │ story    │
-│          │ (hands   │ Árvores  │          │ card     │
-│          │  photo)  │          │          │          │
-│          │          │          │          ├──────────┤
-│          │ "Sua     │          │ "Com sua │ +50.000  │
-│          │  ajuda"  │ "Saiba   │  ajuda"  │ Pessoas  │
-└──────────┴──────────┴──Mais────┴──────────┴──────────┘
-```
+### 4. ImpactGrid — melhorar disposição do mosaico
+- Ajustar alturas dos cards para ficarem mais proporcionais (aumentar `gridAutoRows`)
+- Melhorar o espaçamento entre cards (`gap-4` em vez de `gap-3`)
+- Adicionar o coração puzzle como detalhe em algum card de texto (card 6)
 
-Each card has:
-- Rounded corners (`rounded-2xl`)
-- Photo background with gradient overlay
-- Stats number + label + description text
-- Small CTA links at bottom ("Doe Agora", "Saiba Mais", "Seja + um Apoiador")
-- The right column includes "story" style cards (emergency card with progress bar, individual story card)
+### 5. TopBanner — adicionar ícone do coração
+- Substituir o emoji 🤝 pelo coração puzzle como mini ícone inline
 
-## Technical Plan
+### 6. Footer — usar logo oficial
+- Substituir texto "ajudaki" pelo logo horizontal (versão branca/clara ou o mesmo com filtro)
 
-### 1. Rewrite `HeroSection.tsx`
-- Remove background image, use light bg
-- Center title, subtitle, and CTAs
-- Use dark text colors (`text-foreground`)
-
-### 2. Rewrite `ImpactGrid.tsx` as the mosaic
-- 5-column grid layout matching the reference
-- Each card: photo bg, gradient overlay, stat number, label, description, CTA link
-- Add two "story" cards on the right column (emergency with progress bar, individual story)
-- Cards have varying heights using `row-span`
-- Include descriptive text under stats (e.g., "Com a sua ajuda, mais mesas seguem cheias.")
-- Responsive: stack on mobile, mosaic on desktop
-
-### 3. Update `Index.tsx`
-- Keep HeroSection and ImpactGrid as separate components but visually they flow together (no extra heading in ImpactGrid)
-- Remove the "Nosso Impacto" heading and subtitle from ImpactGrid since stats are now part of the hero visual
-
-### 4. Regenerate images
-- Generate new images for the mosaic cards to match the reference (smiling man, hands, tree planting, sports/cooking, emergency)
+## Arquivos modificados
+- `src/components/Navbar.tsx` — logo img
+- `src/components/HeroSection.tsx` — coração decorativo + espaçamento
+- `src/components/ImpactGrid.tsx` — melhor grid spacing
+- `src/components/TopBanner.tsx` — ícone coração
+- `src/components/Footer.tsx` — logo img
+- Copiar 3 assets para `src/assets/`
 
