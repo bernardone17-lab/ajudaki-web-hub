@@ -1,60 +1,35 @@
 
 
-# Adicionar "Transparência" com Dropdown e Páginas Internas
+# Ajustar Layout para Corresponder à Referência (pagina_82)
 
-## O que muda
+## Diferenças identificadas entre o código atual e a imagem de referência
 
-### 1. Navbar — Dropdown "Transparência"
-Adicionar um item "Transparência" na navegação que ao hover/click abre um **dropdown com cards** para cada sub-página:
-- Sobre Ajudaki
-- Segurança
-- Divulgação
-- Política de Privacidade LGPD
-- Política de Cookies
-- Como funciona o Ajudaki
-- Destino Certo
+### 1. Navbar — Reorganizar completamente
+**Atual**: Links "Sobre, Como Funciona, Campanhas, Impacto" à esquerda. Logo à direita. Botões "Acessar Conta" + "Criar Conta".
+**Referência**: Links "Sobre, Como Funciona, Transparência, Depoimentos" à esquerda. Logo **centralizado** (com ícone acima do texto). Direita: ícone de busca + "Criar Conta" (roxo preenchido) + "Acessa sua Conta" (outlined).
 
-O dropdown terá cards com ícone, título e descrição curta (estilo mega-menu). No mobile, expande como accordion dentro do menu.
+Mudanças:
+- Trocar links para: Sobre, Como Funciona, Transparência, Depoimentos
+- Logo centralizado (posição absoluta no centro da navbar)
+- Adicionar ícone de busca (Search do Lucide) à direita
+- Inverter ordem dos botões: "Criar Conta" preenchido primeiro, "Acessa sua Conta" outlined depois
 
-### 2. Criar 7 páginas novas
-Cada página terá layout consistente: Navbar + conteúdo + Footer. Conteúdo extraído do arquivo `ajudakitextos.rtf` fornecido:
+### 2. HeroSection — Remover ícone decorativo
+- Remover o coração puzzle acima do título
+- Manter apenas: título, subtítulo e dois botões centralizados
+- Botão "Fazer uma Doação" roxo preenchido, "Conhecer Causas" outlined com borda escura
 
-| Rota | Conteúdo |
-|------|----------|
-| `/sobre` | História, Missão, Visão, Valores |
-| `/seguranca` | Segurança das doações |
-| `/divulgacao` | Como funciona a divulgação |
-| `/privacidade` | Política de Privacidade LGPD completa |
-| `/cookies` | Política de Cookies completa |
-| `/como-funciona-ajudaki` | Para quem precisa + quem quer ajudar + FAQ |
-| `/destino-certo` | Transparência dos repasses |
+### 3. ImpactGrid — Ajustar formato dos cards da direita
+- Os cards da coluna 5 (emergência + pessoas) devem ter cantos **super arredondados** (estilo celular/phone, `rounded-3xl`)
+- O card de esportes (col 4) deve ter um mini card de CTA overlay na parte inferior com botão laranja circular
+- Ajustar proporções para corresponder melhor ao mosaico da referência
 
-### 3. Layout compartilhado
-Criar um componente `PageLayout` que envolve Navbar + children + Footer para reutilizar nas páginas internas.
+### 4. TopBanner — Destacar texto em negrito
+- Na referência, parte do texto do banner está em **negrito**: "A cada doação feita hoje, a Ajudaki contribui junto."
 
-## Detalhes Técnicos
-
-### Navbar
-- Usar estado `hover`/`click` para abrir dropdown
-- Dropdown posicionado absoluto abaixo do link "Transparência"
-- Cards com ícones Lucide (Shield, Eye, FileText, Cookie, HelpCircle, Target, Info)
-- No mobile: seção colapsável dentro do menu
-
-### Rotas (App.tsx)
-Adicionar 7 rotas novas antes do catch-all.
-
-### Páginas
-Cada página é um componente simples com o texto do RTF formatado em seções com headings, parágrafos e listas.
-
-## Arquivos
-- `src/components/Navbar.tsx` — dropdown Transparência
-- `src/components/PageLayout.tsx` — novo layout wrapper
-- `src/pages/Sobre.tsx`
-- `src/pages/Seguranca.tsx`
-- `src/pages/Divulgacao.tsx`
-- `src/pages/Privacidade.tsx`
-- `src/pages/Cookies.tsx`
-- `src/pages/ComoFuncionaPage.tsx`
-- `src/pages/DestinoCerto.tsx`
-- `src/App.tsx` — novas rotas
+## Arquivos modificados
+- `src/components/Navbar.tsx` — reorganizar layout, links, botões, busca
+- `src/components/HeroSection.tsx` — remover coração, limpar
+- `src/components/ImpactGrid.tsx` — rounded-3xl nos cards direitos, overlay CTA
+- `src/components/TopBanner.tsx` — texto parcialmente em negrito
 
