@@ -70,7 +70,7 @@ const ImpactGrid = () => {
           {/* Col 5 Row 1: Emergência */}
           <AnimatedCard delay={150} className="relative rounded-[2rem] overflow-hidden group">
             <img src={impactFamilies} alt="Emergência" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/5" />
             <div className="relative z-10 h-full flex flex-col justify-between p-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1 bg-primary/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
