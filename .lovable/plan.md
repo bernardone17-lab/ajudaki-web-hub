@@ -1,54 +1,37 @@
 
 
-# Corrigir Layout: Hero Text Dentro do Grid
+# Fix ImpactGrid Layout to Match Reference
 
-## Problema Central
-O texto hero ("Conectamos quem ajuda...") está renderizado **acima** do grid como bloco separado. Na referência, ele está **dentro** do grid, ocupando as colunas centrais da primeira linha, ladeado pelos cards de impacto.
+## Problems (current vs reference)
 
-## Layout Correto (da referência)
+1. **Hero title wraps 4 lines** — needs smaller font or wider center area. Reference shows 2 lines.
+2. **Row 2 cards invisible** — AnimatedCard animation not triggering because they're below the fold. The `useInView` threshold of 0.15 may not fire. Need to check if cards render but are stuck at `opacity-0`.
+3. **Emergency card too faded** — gradient needs to be lighter at top, content needs to be more visible.
+4. **Grid proportions off** — center cols need more width relative to side cols.
+5. **+12k card position** — in reference, it sits lower (aligned with subtitle/buttons area, not the title).
 
-```text
-Row 1: [Meals(tall)] [+12k roxo]  [HERO TEXT + botões] [Emergency(tall)]
-Row 2: [Meals cont.] [Mãos foto]  [Árvores] [Esportes] [+50k roxo]
-```
+## Changes to `src/components/ImpactGrid.tsx`
 
-- Col 1: Meals — row-span-2, foto com overlay escuro
-- Col 2 Row 1: +12.000 — fundo roxo sólido
-- Cols 3-4 Row 1: Hero text centralizado (título, subtítulo, 2 botões)
-- Col 5: Emergência — row-span-2, rounded-[2rem], foto com progress bar
-- Col 2 Row 2: Mãos — foto com overlay laranja, "Sua ajuda é essencial!"
-- Col 3 Row 2: Árvores — foto com overlay roxo
-- Col 4 Row 2: Esportes — foto com CTA overlay
-- Col 5 Row 2: +50.000 — fundo roxo sólido (MAS col 5 já é row-span-2 com emergência)
+### Grid structure
+- Change columns to `grid-cols-[1.3fr_1fr_1.8fr_1fr_1.2fr]` — give center col (now single col-span-2 → cols 3-4) more breathing room
+- Keep `grid-rows-[300px_240px]` but add `gap-3`
 
-Correção: Na referência, a col 5 row 2 é o card roxo +50.000, e a emergência fica sozinha na row 1. Olhando melhor a imagem:
-- Col 5 Row 1: Emergência (só 1 row, mais alto com rounded)  
-- Col 5 Row 2: +50.000 roxo
+### Hero title
+- Reduce from `text-4xl lg:text-5xl` to `text-3xl lg:text-4xl` so it fits in 2 lines
+- Tighten subtitle and button spacing
 
-## Mudanças no `ImpactGrid.tsx`
+### Fix invisible row 2 cards  
+- Reduce `useInView` threshold from `0.15` to `0.05` so cards animate in sooner
+- Or add a fallback: if cards are already visible on load, skip animation delay
 
-1. **Remover o bloco hero separado** (linhas 28-45)
-2. **Inserir hero text como grid item** nas cols 3-4 row 1 com `col-span-2`
-3. **Ajustar grid**: `grid-cols-[1.4fr_1fr_1.2fr_1fr_1.2fr] grid-rows-[280px_240px]`
-4. **Emergência**: remover `row-span-2`, ficar só na row 1 com rounded-[2rem] e altura automática
-5. **+50.000 roxo**: mover para col 5 row 2 (sozinho, não col-span-2)
-6. **Reordenar cards na row 2**: Mãos (col2), Árvores (col3), Esportes (col4), +50k (col5)
+### Emergency card
+- Lighten the gradient overlay: `from-black/60 via-black/20 to-black/5`
+- Ensure progress bar and CTA text have enough contrast
 
-## Estrutura final do grid
+### +12k purple card
+- Add `mt-auto` or adjust vertical alignment so its content gravitates to the bottom half, giving visual impression it starts lower than the hero title
 
-```
-grid-cols-[1.4fr_1fr_1.5fr_1fr_1.3fr] grid-rows-[300px_240px]
-
-Item 1: col1, row-span-2 — Meals
-Item 2: col2, row1 — +12k roxo
-Item 3: col3-4, row1 — Hero text
-Item 4: col5, row1 — Emergência
-Item 5: col2, row2 — Mãos
-Item 6: col3, row2 — Árvores
-Item 7: col4, row2 — Esportes
-Item 8: col5, row2 — +50k roxo
-```
-
-## Arquivo modificado
-- `src/components/ImpactGrid.tsx` — reescrever a seção desktop do grid
+## Files modified
+- `src/components/ImpactGrid.tsx` — grid proportions, font sizes, animation threshold, gradient fixes
+- `src/hooks/use-in-view.ts` — possibly lower threshold default
 
