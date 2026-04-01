@@ -1,31 +1,60 @@
 
 
-# 4 Melhorias: Verificação, Favicon, Animações e Seção CTA
+# Adicionar "Transparência" com Dropdown e Páginas Internas
 
-## 1. Verificar logos e ícones
-Os componentes já referenciam os assets corretos (`logo-horizontal.png`, `coracao-puzzle.png`). Console sem erros. Os assets foram criados no último edit. Se algum não carregar, será visível no preview — sem mudança de código necessária aqui.
+## O que muda
 
-## 2. Atualizar favicon com ícone oficial
-- Copiar `user-uploads://Ícone_-_1-100.jpg` para `public/favicon.jpg`
-- Remover `public/favicon.ico` se existir
-- Atualizar `index.html` com `<link rel="icon" href="/favicon.jpg" type="image/jpeg">`
+### 1. Navbar — Dropdown "Transparência"
+Adicionar um item "Transparência" na navegação que ao hover/click abre um **dropdown com cards** para cada sub-página:
+- Sobre Ajudaki
+- Segurança
+- Divulgação
+- Política de Privacidade LGPD
+- Política de Cookies
+- Como funciona o Ajudaki
+- Destino Certo
 
-## 3. Animações nos cards do mosaico (sem framer-motion)
-Em vez de adicionar uma dependência, usar **Intersection Observer** com CSS animations já disponíveis no projeto (`animate-fade-in`):
-- Criar um hook `useInView` simples
-- Aplicar classes `opacity-0` → `animate-fade-in` com delays escalonados nos cards do `ImpactGrid`
-- Cada card aparece com um leve delay incremental (0ms, 100ms, 200ms...)
+O dropdown terá cards com ícone, título e descrição curta (estilo mega-menu). No mobile, expande como accordion dentro do menu.
 
-## 4. Nova seção CTA abaixo de Histórias de Impacto
-- Criar `src/components/CTASection.tsx`
-- Background roxo/primary com texto branco centralizado
-- Frase: "Cada gesto conta. Comece a transformar vidas agora."
-- Dois botões iguais ao Hero: "Fazer uma Doação" (branco filled) + "Conhecer Causas" (outline branco)
-- Adicionar ao `Index.tsx` entre `HistoriasImpacto` e `Footer`
+### 2. Criar 7 páginas novas
+Cada página terá layout consistente: Navbar + conteúdo + Footer. Conteúdo extraído do arquivo `ajudakitextos.rtf` fornecido:
 
-## Arquivos modificados
-- `index.html` — favicon
-- `src/components/ImpactGrid.tsx` — animações de entrada
-- `src/components/CTASection.tsx` — novo componente
-- `src/pages/Index.tsx` — incluir CTASection
+| Rota | Conteúdo |
+|------|----------|
+| `/sobre` | História, Missão, Visão, Valores |
+| `/seguranca` | Segurança das doações |
+| `/divulgacao` | Como funciona a divulgação |
+| `/privacidade` | Política de Privacidade LGPD completa |
+| `/cookies` | Política de Cookies completa |
+| `/como-funciona-ajudaki` | Para quem precisa + quem quer ajudar + FAQ |
+| `/destino-certo` | Transparência dos repasses |
+
+### 3. Layout compartilhado
+Criar um componente `PageLayout` que envolve Navbar + children + Footer para reutilizar nas páginas internas.
+
+## Detalhes Técnicos
+
+### Navbar
+- Usar estado `hover`/`click` para abrir dropdown
+- Dropdown posicionado absoluto abaixo do link "Transparência"
+- Cards com ícones Lucide (Shield, Eye, FileText, Cookie, HelpCircle, Target, Info)
+- No mobile: seção colapsável dentro do menu
+
+### Rotas (App.tsx)
+Adicionar 7 rotas novas antes do catch-all.
+
+### Páginas
+Cada página é um componente simples com o texto do RTF formatado em seções com headings, parágrafos e listas.
+
+## Arquivos
+- `src/components/Navbar.tsx` — dropdown Transparência
+- `src/components/PageLayout.tsx` — novo layout wrapper
+- `src/pages/Sobre.tsx`
+- `src/pages/Seguranca.tsx`
+- `src/pages/Divulgacao.tsx`
+- `src/pages/Privacidade.tsx`
+- `src/pages/Cookies.tsx`
+- `src/pages/ComoFuncionaPage.tsx`
+- `src/pages/DestinoCerto.tsx`
+- `src/App.tsx` — novas rotas
 
