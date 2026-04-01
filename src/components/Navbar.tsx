@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Info, Shield, Megaphone, FileText, Cookie, HelpCircle, Target } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const navLinks = [
@@ -10,8 +11,31 @@ const navLinks = [
   { label: "Impacto", href: "#impacto" },
 ];
 
+const transparenciaLinks = [
+  { label: "Sobre Ajudaki", href: "/sobre", icon: Info, desc: "Nossa história, missão e valores" },
+  { label: "Segurança", href: "/seguranca", icon: Shield, desc: "Como protegemos suas doações" },
+  { label: "Divulgação", href: "/divulgacao", icon: Megaphone, desc: "Como impulsionamos campanhas" },
+  { label: "Privacidade LGPD", href: "/privacidade", icon: FileText, desc: "Política de proteção de dados" },
+  { label: "Cookies", href: "/cookies", icon: Cookie, desc: "Como usamos cookies no site" },
+  { label: "Como Funciona", href: "/como-funciona-ajudaki", icon: HelpCircle, desc: "Guia completo para doadores e causas" },
+  { label: "Destino Certo", href: "/destino-certo", icon: Target, desc: "Para onde vai sua doação" },
+];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileTransparencia, setMobileTransparencia] = useState(false);
+  const dropdownRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
@@ -28,12 +52,44 @@ const Navbar = () => {
               </a>
             </li>
           ))}
+
+          {/* Transparência dropdown */}
+          <li className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Transparência
+              <ChevronDown className={`h-4 w-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[520px] bg-card border border-border rounded-2xl shadow-xl p-4 grid grid-cols-2 gap-2 animate-fade-in">
+                {transparenciaLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setDropdownOpen(false)}
+                    className="flex items-start gap-3 rounded-xl p-3 hover:bg-muted transition-colors group"
+                  >
+                    <item.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {item.label}
+                      </span>
+                      <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </li>
         </ul>
 
         {/* Logo */}
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={logoHorizontal} alt="Ajudaki" className="h-8" />
-        </a>
+        </Link>
 
         {/* Right buttons - desktop */}
         <div className="hidden md:flex items-center gap-3">
@@ -62,6 +118,31 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+
+          {/* Mobile transparência accordion */}
+          <button
+            onClick={() => setMobileTransparencia(!mobileTransparencia)}
+            className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary py-1"
+          >
+            Transparência
+            <ChevronDown className={`h-4 w-4 transition-transform ${mobileTransparencia ? "rotate-180" : ""}`} />
+          </button>
+          {mobileTransparencia && (
+            <div className="pl-4 space-y-1">
+              {transparenciaLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => { setOpen(false); setMobileTransparencia(false); }}
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary py-1.5"
+                >
+                  <item.icon className="h-4 w-4 text-primary" />
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
           <div className="flex gap-2 pt-2">
             <Button variant="outline" size="sm" className="flex-1">
               Acessar Conta
