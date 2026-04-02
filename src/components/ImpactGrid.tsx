@@ -40,7 +40,6 @@ const ImpactGrid = () => {
           {/* Col 2 Row 1: +12.000 Famílias — roxo sólido */}
           <AnimatedCard delay={100} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-4">
             <div className="mt-auto">
-              <p className="font-heading text-2xl font-extrabold text-white">+12.000</p>
               <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Famílias foram ajudadas com muitas doações voluntárias.</p>
               <a href="#" className="text-accent text-[11px] font-semibold mt-2 inline-block hover:underline">Saiba Mais →</a>
             </div>
