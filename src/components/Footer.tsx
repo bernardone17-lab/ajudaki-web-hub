@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const Footer = () => (
   <footer className="bg-foreground text-background">
@@ -8,12 +9,9 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Branding */}
         <div className="space-y-4">
-          <div>
-            <h3 className="font-heading text-2xl font-bold">Ajudaki</h3>
-            <div className="w-10 h-1 bg-accent rounded-full mt-1" />
-          </div>
+          <img src={logoHorizontal} alt="Ajudaki" className="h-8 brightness-0 invert" />
           <p className="text-background/60 text-sm leading-relaxed">
-            A plataforma de arrecadação de fundos mais confiável do Brasil. Conectamos pessoas e transformamos vidas através da solidariedade.
+            Conectamos quem ajuda a quem mais precisa, com transparência e impacto real.
           </p>
           <div className="flex gap-3 pt-1">
             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
