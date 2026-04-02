@@ -31,8 +31,7 @@ const ImpactGrid = () => {
             <img src={impactMeals} alt="Refeições garantidas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="relative z-10 h-full flex flex-col justify-end p-5">
-              <p className="font-heading text-4xl font-extrabold text-white">+18.500</p>
-              <p className="text-white font-semibold text-sm">refeições garantidas.</p>
+              <p className="text-white font-semibold text-sm">Refeições garantidas.</p>
               <p className="text-white/80 text-xs mt-1">Com a sua ajuda, mais<br />mesas seguem cheias.</p>
               <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Doe Agora →</a>
             </div>
