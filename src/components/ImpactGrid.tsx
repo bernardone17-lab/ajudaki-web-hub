@@ -131,7 +131,6 @@ const ImpactGrid = () => {
 
           {/* Col 5 Row 2: +50.000 roxo sólido */}
           <AnimatedCard delay={350} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-5">
-            <p className="font-heading text-3xl font-extrabold text-white">+50.000</p>
             <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Pessoas apoiadas por campanhas verificadas pela Ajudaki. ✅</p>
             <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
           </AnimatedCard>
