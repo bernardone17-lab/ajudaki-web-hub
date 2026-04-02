@@ -36,7 +36,7 @@ const Footer = () => (
               </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-background transition-colors">Criar campanha</a>
+              <Link to="/contato" className="hover:text-background transition-colors">Criar campanha</Link>
             </li>
             <li>
               <a href="/#campanhas" className="hover:text-background transition-colors">Explorar Campanhas</a>
@@ -55,7 +55,7 @@ const Footer = () => (
               <Link to="/seguranca" className="hover:text-background transition-colors">Transparência</Link>
             </li>
             <li>
-              <a href="#" className="hover:text-background transition-colors">ONGs</a>
+              <Link to="/ongs" className="hover:text-background transition-colors">ONGs</Link>
             </li>
           </ul>
         </div>
@@ -65,10 +65,10 @@ const Footer = () => (
           <h4 className="font-heading font-semibold mb-4">Suporte</h4>
           <ul className="space-y-2.5 text-sm text-background/60">
             <li>
-              <a href="#" className="hover:text-background transition-colors">Contato</a>
+              <Link to="/contato" className="hover:text-background transition-colors">Contato</Link>
             </li>
             <li>
-              <a href="#" className="hover:text-background transition-colors">FAQ</a>
+              <Link to="/faq" className="hover:text-background transition-colors">FAQ</Link>
             </li>
           </ul>
         </div>
