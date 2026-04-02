@@ -24,7 +24,8 @@ const steps = [
 
 const ComoFunciona = () => {
   return (
-    <section id="como-funciona" className="bg-muted py-20 border-t border-border/40">
+    <section id="como-funciona" className="bg-muted py-24 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="container mx-auto px-4">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
           Como Funciona
