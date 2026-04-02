@@ -1,37 +1,41 @@
 
 
-# Fix ImpactGrid Layout to Match Reference
+# Adicionar Carrossel Mobile nas Seções
 
-## Problems (current vs reference)
+## O que muda
 
-1. **Hero title wraps 4 lines** — needs smaller font or wider center area. Reference shows 2 lines.
-2. **Row 2 cards invisible** — AnimatedCard animation not triggering because they're below the fold. The `useInView` threshold of 0.15 may not fire. Need to check if cards render but are stuck at `opacity-0`.
-3. **Emergency card too faded** — gradient needs to be lighter at top, content needs to be more visible.
-4. **Grid proportions off** — center cols need more width relative to side cols.
-5. **+12k card position** — in reference, it sits lower (aligned with subtitle/buttons area, not the title).
+Criar um componente `MobileAutoCarousel` (igual ao do projeto Agência Criativa Digital) que no **desktop** renderiza o grid normal, e no **mobile** troca por um carrossel horizontal com autoplay e dots de navegação.
 
-## Changes to `src/components/ImpactGrid.tsx`
+Aplicar nas 3 seções:
+- **Como Funciona** — 3 cards de passos
+- **Campanhas** — 3 cards de campanhas
+- **Histórias de Impacto** — 3 cards de histórias
 
-### Grid structure
-- Change columns to `grid-cols-[1.3fr_1fr_1.8fr_1fr_1.2fr]` — give center col (now single col-span-2 → cols 3-4) more breathing room
-- Keep `grid-rows-[300px_240px]` but add `gap-3`
+## Arquivos
 
-### Hero title
-- Reduce from `text-4xl lg:text-5xl` to `text-3xl lg:text-4xl` so it fits in 2 lines
-- Tighten subtitle and button spacing
+### 1. Instalar `embla-carousel-autoplay`
+O projeto já tem `embla-carousel-react`, mas precisa do plugin `embla-carousel-autoplay`.
 
-### Fix invisible row 2 cards  
-- Reduce `useInView` threshold from `0.15` to `0.05` so cards animate in sooner
-- Or add a fallback: if cards are already visible on load, skip animation delay
+### 2. Criar `src/components/animations/MobileAutoCarousel.tsx`
+- No desktop: renderiza `children` dentro de uma div com a `desktopClassName` (grid)
+- No mobile: usa `embla-carousel-react` com `Autoplay` plugin, loop infinito, 90% width por slide, dots indicator na parte inferior
+- Props: `children`, `autoplayInterval` (default 4000ms), `desktopClassName`
 
-### Emergency card
-- Lighten the gradient overlay: `from-black/60 via-black/20 to-black/5`
-- Ensure progress bar and CTA text have enough contrast
+### 3. Atualizar `src/components/ComoFunciona.tsx`
+- Substituir `<div className="grid grid-cols-1 md:grid-cols-3 ...">` por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">`
+- Cada card vira um child direto do carousel
 
-### +12k purple card
-- Add `mt-auto` or adjust vertical alignment so its content gravitates to the bottom half, giving visual impression it starts lower than the hero title
+### 4. Atualizar `src/components/Campanhas.tsx`
+- Substituir o grid por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">`
 
-## Files modified
-- `src/components/ImpactGrid.tsx` — grid proportions, font sizes, animation threshold, gradient fixes
-- `src/hooks/use-in-view.ts` — possibly lower threshold default
+### 5. Atualizar `src/components/HistoriasImpacto.tsx`
+- Substituir o `flex overflow-x-auto snap-x` por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">`
+- No desktop passa a ser grid em vez de scroll horizontal
+
+## Arquivos modificados
+- `package.json` — adicionar `embla-carousel-autoplay`
+- `src/components/animations/MobileAutoCarousel.tsx` — novo componente
+- `src/components/ComoFunciona.tsx` — usar MobileAutoCarousel
+- `src/components/Campanhas.tsx` — usar MobileAutoCarousel
+- `src/components/HistoriasImpacto.tsx` — usar MobileAutoCarousel
 
