@@ -110,7 +110,6 @@ const ImpactGrid = () => {
             <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
             <div className="relative z-10 h-full flex flex-col justify-end p-5">
-              <p className="font-heading text-3xl font-extrabold text-white">+10.000</p>
               <p className="text-white font-semibold text-xs">Árvores plantadas</p>
               <p className="text-white/80 text-[11px] mt-1">Graças às pessoas<br />que acreditam no futuro.</p>
               <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Saiba Mais</a>
