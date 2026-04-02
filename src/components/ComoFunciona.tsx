@@ -48,7 +48,7 @@ const ComoFunciona = () => {
               <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
             </div>
           ))}
-        </div>
+        </MobileAutoCarousel>
       </div>
     </section>
   );
