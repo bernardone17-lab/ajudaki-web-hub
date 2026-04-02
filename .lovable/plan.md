@@ -1,64 +1,47 @@
 
 
-# Reestruturar Footer, Navbar e Separadores de Seções
+# Criar FAQ, Contato e Finalizar Páginas/Botões Pendentes
 
-## Resumo das mudanças
+## Páginas a criar
 
-### 1. Footer — Redesign completo (baseado na imagem de referência)
+### 1. FAQ (`/faq`)
+Página com accordion usando o texto fornecido (8 perguntas sobre doações, taxas, anonimato, comprovantes, fraude). Layout com PageLayout, hero section com título "Perguntas Frequentes" e accordion estilizado com as cores da marca.
 
-Layout 4 colunas seguindo a referência:
+### 2. Contato (`/contato`)
+Baseado no layout do projeto [Agência Criativa Digital](/projects/95240fd2-6118-41b6-9dbf-16be3feba9e0): hero com título "Fale Conosco", grid 1/3 + 2/3 com:
+- **Coluna esquerda**: cards com WhatsApp, e-mail, telefone e redes sociais do Ajudaki
+- **Coluna direita**: formulário com campos Nome, E-mail, Telefone, Assunto (select: Dúvida, Sugestão, Problema, Parceria, Outro), Mensagem e botão Enviar
 
-**Coluna 1 — Branding:**
-- Nome "Ajudaki" em bold com linha laranja (accent) embaixo
-- Texto: "A plataforma de arrecadação de fundos mais confiável do Brasil. Conectamos pessoas e transformamos vidas através da solidariedade."
-- Ícones sociais: Facebook, Twitter, Instagram, LinkedIn
+Sem Supabase por enquanto — apenas toast de sucesso no submit. Sem zod (simplificar). Adaptado para a identidade visual Ajudaki (cores roxo/laranja, Poppins/Inter).
 
-**Coluna 2 — Plataforma:**
-- Como funciona → `/como-funciona-ajudaki`
-- Criar campanha → `#`
-- Explorar Campanhas → `#campanhas`
+### 3. ONGs (`/ongs`)
+Página placeholder simples com título "ONGs Parceiras" e texto "Em breve você poderá conhecer todas as ONGs parceiras do Ajudaki."
 
-**Coluna 3 — Institucional:**
-- Sobre Nós → `/sobre`
-- Transparência (link para dropdown ou `/seguranca`)
-- ONGs → `#`
+## Links/botões a conectar
 
-**Coluna 4 — Suporte (substitui "Contato"):**
-- Contato → `#`
-- FAQ → `#`
+### Footer
+- "Contato" → `/contato`
+- "FAQ" → `/faq`
+- "ONGs" → `/ongs`
+- "Criar campanha" → `/contato` (por enquanto)
 
-**Barra inferior:** Copyright à esquerda + links "Termos", "Privacidade", "Cookies" à direita (como na referência).
+### Navbar
+- Botões "Criar Conta" e "Acessa sua Conta" → mantém `#` (sem auth ainda)
+- Busca (Search icon) → mantém `#` (sem funcionalidade ainda)
 
-### 2. Navbar — Reestruturar dropdown Transparência
+## Arquivos
 
-Remover do dropdown: Divulgação, Privacidade LGPD, Cookies, Como Funciona.
+| Arquivo | Ação |
+|---|---|
+| `src/pages/FAQ.tsx` | Criar — accordion com 8 perguntas |
+| `src/pages/Contato.tsx` | Criar — layout igual Agência Criativa, adaptado Ajudaki |
+| `src/pages/ONGs.tsx` | Criar — placeholder |
+| `src/App.tsx` | Adicionar rotas `/faq`, `/contato`, `/ongs` |
+| `src/components/Footer.tsx` | Atualizar links Contato→`/contato`, FAQ→`/faq`, ONGs→`/ongs`, Criar campanha→`/contato` |
 
-Novo conteúdo do dropdown Transparência:
-- Sobre Ajudaki → `/sobre`
-- Segurança → `/seguranca`
-- Pagamentos e Destino Certo → `/destino-certo`
-
-Mover "Divulgação" para dentro da página "Como Funciona" (conteúdo, não navbar).
-
-### 3. Criar página Termos de Uso
-
-Nova página `/termos-de-uso` com texto genérico de termos de uso para plataforma de doações. Adicionar rota no `App.tsx`.
-
-### 4. Separadores entre seções — linha sutil com degradê da marca
-
-Substituir o `border-t border-border/40` atual por um `<div>` decorativo com gradiente horizontal `primary → accent → primary` (roxo → laranja → roxo), altura de 1-2px, com opacidade suave. Adicionar `py-24` (mais respiro) nas seções em vez do `py-20` atual.
-
-### 5. Mover links existentes
-
-- "Como Funciona" no navbar continua apontando para `#como-funciona` (seção da home)
-- A página `/como-funciona-ajudaki` fica acessível pelo footer "Plataforma > Como funciona"
-
-## Arquivos modificados
-- `src/components/Footer.tsx` — redesign completo
-- `src/components/Navbar.tsx` — reduzir dropdown Transparência
-- `src/pages/TermosDeUso.tsx` — nova página
-- `src/App.tsx` — adicionar rota `/termos-de-uso`
-- `src/components/ComoFunciona.tsx` — aumentar padding, separador degradê
-- `src/components/Campanhas.tsx` — idem
-- `src/components/HistoriasImpacto.tsx` — idem
+## Detalhes técnicos
+- FAQ usa `Accordion` do shadcn/ui (já existe em `src/components/ui/accordion.tsx`)
+- Contato usa `Card`, `Input`, `Textarea`, `Select`, `Label`, `Button` (todos já existem)
+- Todas as páginas usam `PageLayout` existente
+- Contato terá layout customizado (não usa o `max-w-4xl` do PageLayout padrão — usará Navbar+Footer diretamente com container mais largo)
 
