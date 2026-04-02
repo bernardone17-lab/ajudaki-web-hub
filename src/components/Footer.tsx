@@ -55,7 +55,7 @@ const Footer = () => (
               <Link to="/seguranca" className="hover:text-background transition-colors">Transparência</Link>
             </li>
             <li>
-              <a href="#" className="hover:text-background transition-colors">ONGs</a>
+              <Link to="/ongs" className="hover:text-background transition-colors">ONGs</Link>
             </li>
           </ul>
         </div>
