@@ -88,7 +88,7 @@ const HistoriasImpacto = () => {
               </div>
             </div>
           ))}
-        </div>
+        </MobileAutoCarousel>
       </div>
     </section>
   );
