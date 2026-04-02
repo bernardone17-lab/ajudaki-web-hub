@@ -49,7 +49,7 @@ const HistoriasImpacto = () => {
           {stories.map((s) => (
             <div
               key={s.title}
-              className="min-w-[300px] md:min-w-[340px] flex-shrink-0 snap-center rounded-2xl overflow-hidden border border-border bg-card shadow-sm"
+              className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
