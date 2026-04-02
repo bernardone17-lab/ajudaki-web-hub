@@ -36,7 +36,7 @@ const Footer = () => (
               </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-background transition-colors">Criar campanha</a>
+              <Link to="/contato" className="hover:text-background transition-colors">Criar campanha</Link>
             </li>
             <li>
               <a href="/#campanhas" className="hover:text-background transition-colors">Explorar Campanhas</a>
