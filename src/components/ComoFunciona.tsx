@@ -1,4 +1,5 @@
 import { Heart, Shield, BarChart3 } from "lucide-react";
+import MobileAutoCarousel from "@/components/animations/MobileAutoCarousel";
 
 const steps = [
   {
@@ -31,7 +32,7 @@ const ComoFunciona = () => {
         <p className="text-muted-foreground text-center mb-14 max-w-xl mx-auto">
           Em três passos simples, sua doação chega a quem mais precisa.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <div
               key={step.title}
@@ -47,7 +48,7 @@ const ComoFunciona = () => {
               <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
             </div>
           ))}
-        </div>
+        </MobileAutoCarousel>
       </div>
     </section>
   );
