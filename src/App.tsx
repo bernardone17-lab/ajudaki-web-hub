@@ -9,6 +9,9 @@ import Cookies from "./pages/Cookies.tsx";
 import ComoFuncionaPage from "./pages/ComoFuncionaPage.tsx";
 import DestinoCerto from "./pages/DestinoCerto.tsx";
 import TermosDeUso from "./pages/TermosDeUso.tsx";
+import FAQ from "./pages/FAQ.tsx";
+import Contato from "./pages/Contato.tsx";
+import ONGs from "./pages/ONGs.tsx";
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +25,9 @@ const App = () => (
       <Route path="/como-funciona-ajudaki" element={<ComoFuncionaPage />} />
       <Route path="/destino-certo" element={<DestinoCerto />} />
       <Route path="/termos-de-uso" element={<TermosDeUso />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/contato" element={<Contato />} />
+      <Route path="/ongs" element={<ONGs />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
