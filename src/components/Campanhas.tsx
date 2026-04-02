@@ -49,7 +49,7 @@ const Campanhas = () => {
         <p className="text-muted-foreground text-center mb-14 max-w-xl mx-auto">
           Conheça as campanhas que estão transformando vidas agora mesmo.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {campaigns.map((c) => {
             const pct = Math.round((c.raised / c.goal) * 100);
             return (
