@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import MobileAutoCarousel from "@/components/animations/MobileAutoCarousel";
 import { Progress } from "@/components/ui/progress";
 import impactMeals from "@/assets/impact-meals.jpg";
 import impactFamilies from "@/assets/impact-families.jpg";
