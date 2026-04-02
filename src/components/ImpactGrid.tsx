@@ -158,10 +158,10 @@ const ImpactGrid = () => {
 
         <div className="grid grid-cols-2 gap-3">
           {[
-            { img: impactMeals, num: "+18.500", label: "refeições garantidas", overlay: "from-black/70 to-transparent" },
-            { img: null, num: "+12.000", label: "famílias assistidas", overlay: "" },
-            { img: impactTrees, num: "+10.000", label: "árvores plantadas", overlay: "from-primary/90 to-transparent" },
-            { img: null, num: "+50.000", label: "pessoas apoiadas", overlay: "" },
+            { img: impactMeals, label: "Refeições garantidas", overlay: "from-black/70 to-transparent" },
+            { img: null, label: "Famílias assistidas", overlay: "" },
+            { img: impactTrees, label: "Árvores plantadas", overlay: "from-primary/90 to-transparent" },
+            { img: null, label: "Pessoas apoiadas", overlay: "" },
           ].map((item, i) => (
             <div
               key={item.label}
@@ -175,8 +175,7 @@ const ImpactGrid = () => {
                 </>
               )}
               <div className="relative z-10">
-                <p className="font-heading text-2xl font-extrabold text-white">{item.num}</p>
-                <p className="text-white/90 text-xs font-medium">{item.label}</p>
+                <p className="text-white/90 text-sm font-semibold">{item.label}</p>
               </div>
             </div>
           ))}
