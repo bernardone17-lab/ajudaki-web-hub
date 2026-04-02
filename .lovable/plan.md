@@ -1,41 +1,53 @@
 
 
-# Adicionar Carrossel Mobile nas Seções
+# Bordas/Sombras entre Seções + Verificar Fundo + Identidade Visual
 
-## O que muda
+## 1. Fundo uniforme #f2f0fc
 
-Criar um componente `MobileAutoCarousel` (igual ao do projeto Agência Criativa Digital) que no **desktop** renderiza o grid normal, e no **mobile** troca por um carrossel horizontal com autoplay e dots de navegação.
+**Problema**: `--background` e `--muted` já são ambos `250 33% 97%` (= `#f2f0fc`), mas:
+- `ComoFunciona` usa `bg-muted` ✓
+- `HistoriasImpacto` usa `bg-muted` ✓
+- `Campanhas` não tem classe de fundo — herda `bg-background` ✓
+- `CTASection` usa `bg-primary` (roxo) — correto, é a seção CTA
+- `Navbar` usa `bg-card/95` — cards são `#ffffff`, ok para contraste
+- `Footer` usa `bg-foreground` — escuro, ok
+- `PageLayout` não tem fundo explícito — herda `bg-background` ✓
 
-Aplicar nas 3 seções:
-- **Como Funciona** — 3 cards de passos
-- **Campanhas** — 3 cards de campanhas
-- **Histórias de Impacto** — 3 cards de histórias
+**Resultado**: Todas as seções de conteúdo já usam #f2f0fc. Sem mudança necessária aqui.
 
-## Arquivos
+## 2. Separação visual entre seções com mesmo fundo
 
-### 1. Instalar `embla-carousel-autoplay`
-O projeto já tem `embla-carousel-react`, mas precisa do plugin `embla-carousel-autoplay`.
+Como ComoFunciona, Campanhas e HistoriasImpacto agora têm o mesmo fundo, ficam visualmente grudadas. Solução:
 
-### 2. Criar `src/components/animations/MobileAutoCarousel.tsx`
-- No desktop: renderiza `children` dentro de uma div com a `desktopClassName` (grid)
-- No mobile: usa `embla-carousel-react` com `Autoplay` plugin, loop infinito, 90% width por slide, dots indicator na parte inferior
-- Props: `children`, `autoplayInterval` (default 4000ms), `desktopClassName`
+- Adicionar um **divisor sutil** entre cada seção usando um `<div>` com `border-t border-border/50` (linha fina lilás clara) no container
+- Alternativa melhor: dar a cada seção cards com sombras mais pronunciadas (`shadow-md`) e adicionar espaçamento vertical consistente
 
-### 3. Atualizar `src/components/ComoFunciona.tsx`
-- Substituir `<div className="grid grid-cols-1 md:grid-cols-3 ...">` por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">`
-- Cada card vira um child direto do carousel
+**Abordagem escolhida**: Adicionar `border-t border-border/40` no topo de cada seção (exceto a primeira e o CTA/Footer que já têm fundo diferente).
 
-### 4. Atualizar `src/components/Campanhas.tsx`
-- Substituir o grid por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">`
+### Arquivos:
+- `src/components/ComoFunciona.tsx` — adicionar `border-t border-border/40` na section
+- `src/components/Campanhas.tsx` — adicionar `border-t border-border/40`
+- `src/components/HistoriasImpacto.tsx` — adicionar `border-t border-border/40`
 
-### 5. Atualizar `src/components/HistoriasImpacto.tsx`
-- Substituir o `flex overflow-x-auto snap-x` por `<MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">`
-- No desktop passa a ser grid em vez de scroll horizontal
+## 3. Verificação da identidade visual (brand memory)
 
-## Arquivos modificados
-- `package.json` — adicionar `embla-carousel-autoplay`
-- `src/components/animations/MobileAutoCarousel.tsx` — novo componente
-- `src/components/ComoFunciona.tsx` — usar MobileAutoCarousel
-- `src/components/Campanhas.tsx` — usar MobileAutoCarousel
-- `src/components/HistoriasImpacto.tsx` — usar MobileAutoCarousel
+Checklist contra o brand doc:
+- ✅ Primary `#685bc7` → CSS `--primary: 250 43% 56%` = `hsl(250,43%,56%)` ≈ `#685bc7` ✓
+- ✅ Accent `#f68d2e` → CSS `--accent: 28 92% 57%` ≈ `#f68d2e` ✓
+- ✅ Background `#f2f0fc` → `--background: 250 33% 97%` ✓
+- ✅ Poppins headings, Inter body ✓
+- ✅ Cards white, rounded-2xl, soft shadows ✓
+- ⚠️ `--primary-dark: 267 60% 37%` — brand says `#4d2dad`. HSL(267,60%,37%) ≈ `#5b2d96`, not exactly `#4d2dad` (HSL ~268,60%,34%). Minor fix.
+- ⚠️ `--secondary: 264 100% 81%` — brand says `#9964ff` which is HSL(264,100%,70%). Currently HSL(264,100%,81%) ≈ `#c0a0ff`. **Needs fix to match #9964ff → `264 100% 70%`**.
+- ✅ Logo horizontal, coração puzzle, ícone — all referenced correctly in Navbar, Footer, TopBanner
+
+### Fixes in `src/index.css`:
+- `--secondary` from `264 100% 81%` → `264 100% 70%` (matches `#9964ff`)
+- `--primary-dark` from `267 60% 37%` → `268 60% 34%` (matches `#4d2dad`)
+
+## Resumo de arquivos modificados
+- `src/index.css` — corrigir `--secondary` e `--primary-dark`
+- `src/components/ComoFunciona.tsx` — `border-t`
+- `src/components/Campanhas.tsx` — `border-t`
+- `src/components/HistoriasImpacto.tsx` — `border-t`
 
