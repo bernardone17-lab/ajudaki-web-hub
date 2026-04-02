@@ -85,7 +85,7 @@ const Campanhas = () => {
               </div>
             );
           })}
-        </div>
+        </MobileAutoCarousel>
       </div>
     </section>
   );
