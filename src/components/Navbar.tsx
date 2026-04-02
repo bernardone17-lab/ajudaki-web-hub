@@ -13,11 +13,7 @@ const navLinks = [
 const transparenciaLinks = [
   { label: "Sobre Ajudaki", href: "/sobre", icon: Info, desc: "Nossa história, missão e valores" },
   { label: "Segurança", href: "/seguranca", icon: Shield, desc: "Como protegemos suas doações" },
-  { label: "Divulgação", href: "/divulgacao", icon: Megaphone, desc: "Como impulsionamos campanhas" },
-  { label: "Privacidade LGPD", href: "/privacidade", icon: FileText, desc: "Política de proteção de dados" },
-  { label: "Cookies", href: "/cookies", icon: Cookie, desc: "Como usamos cookies no site" },
-  { label: "Como Funciona", href: "/como-funciona-ajudaki", icon: HelpCircle, desc: "Guia completo para doadores e causas" },
-  { label: "Destino Certo", href: "/destino-certo", icon: Target, desc: "Para onde vai sua doação" },
+  { label: "Pagamentos e Destino Certo", href: "/destino-certo", icon: Target, desc: "Para onde vai sua doação" },
 ];
 
 const Navbar = () => {
