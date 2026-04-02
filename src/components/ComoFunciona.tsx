@@ -1,4 +1,5 @@
 import { Heart, Shield, BarChart3 } from "lucide-react";
+import MobileAutoCarousel from "@/components/animations/MobileAutoCarousel";
 
 const steps = [
   {
