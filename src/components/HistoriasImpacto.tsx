@@ -45,7 +45,7 @@ const HistoriasImpacto = () => {
         <p className="text-muted-foreground text-center mb-14 max-w-xl mx-auto">
           Veja como as doações estão transformando vidas reais.
         </p>
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory max-w-5xl mx-auto">
+        <MobileAutoCarousel desktopClassName="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {stories.map((s) => (
             <div
               key={s.title}
