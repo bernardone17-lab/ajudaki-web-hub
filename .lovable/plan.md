@@ -1,53 +1,64 @@
 
 
-# Bordas/Sombras entre Seções + Verificar Fundo + Identidade Visual
+# Reestruturar Footer, Navbar e Separadores de Seções
 
-## 1. Fundo uniforme #f2f0fc
+## Resumo das mudanças
 
-**Problema**: `--background` e `--muted` já são ambos `250 33% 97%` (= `#f2f0fc`), mas:
-- `ComoFunciona` usa `bg-muted` ✓
-- `HistoriasImpacto` usa `bg-muted` ✓
-- `Campanhas` não tem classe de fundo — herda `bg-background` ✓
-- `CTASection` usa `bg-primary` (roxo) — correto, é a seção CTA
-- `Navbar` usa `bg-card/95` — cards são `#ffffff`, ok para contraste
-- `Footer` usa `bg-foreground` — escuro, ok
-- `PageLayout` não tem fundo explícito — herda `bg-background` ✓
+### 1. Footer — Redesign completo (baseado na imagem de referência)
 
-**Resultado**: Todas as seções de conteúdo já usam #f2f0fc. Sem mudança necessária aqui.
+Layout 4 colunas seguindo a referência:
 
-## 2. Separação visual entre seções com mesmo fundo
+**Coluna 1 — Branding:**
+- Nome "Ajudaki" em bold com linha laranja (accent) embaixo
+- Texto: "A plataforma de arrecadação de fundos mais confiável do Brasil. Conectamos pessoas e transformamos vidas através da solidariedade."
+- Ícones sociais: Facebook, Twitter, Instagram, LinkedIn
 
-Como ComoFunciona, Campanhas e HistoriasImpacto agora têm o mesmo fundo, ficam visualmente grudadas. Solução:
+**Coluna 2 — Plataforma:**
+- Como funciona → `/como-funciona-ajudaki`
+- Criar campanha → `#`
+- Explorar Campanhas → `#campanhas`
 
-- Adicionar um **divisor sutil** entre cada seção usando um `<div>` com `border-t border-border/50` (linha fina lilás clara) no container
-- Alternativa melhor: dar a cada seção cards com sombras mais pronunciadas (`shadow-md`) e adicionar espaçamento vertical consistente
+**Coluna 3 — Institucional:**
+- Sobre Nós → `/sobre`
+- Transparência (link para dropdown ou `/seguranca`)
+- ONGs → `#`
 
-**Abordagem escolhida**: Adicionar `border-t border-border/40` no topo de cada seção (exceto a primeira e o CTA/Footer que já têm fundo diferente).
+**Coluna 4 — Suporte (substitui "Contato"):**
+- Contato → `#`
+- FAQ → `#`
 
-### Arquivos:
-- `src/components/ComoFunciona.tsx` — adicionar `border-t border-border/40` na section
-- `src/components/Campanhas.tsx` — adicionar `border-t border-border/40`
-- `src/components/HistoriasImpacto.tsx` — adicionar `border-t border-border/40`
+**Barra inferior:** Copyright à esquerda + links "Termos", "Privacidade", "Cookies" à direita (como na referência).
 
-## 3. Verificação da identidade visual (brand memory)
+### 2. Navbar — Reestruturar dropdown Transparência
 
-Checklist contra o brand doc:
-- ✅ Primary `#685bc7` → CSS `--primary: 250 43% 56%` = `hsl(250,43%,56%)` ≈ `#685bc7` ✓
-- ✅ Accent `#f68d2e` → CSS `--accent: 28 92% 57%` ≈ `#f68d2e` ✓
-- ✅ Background `#f2f0fc` → `--background: 250 33% 97%` ✓
-- ✅ Poppins headings, Inter body ✓
-- ✅ Cards white, rounded-2xl, soft shadows ✓
-- ⚠️ `--primary-dark: 267 60% 37%` — brand says `#4d2dad`. HSL(267,60%,37%) ≈ `#5b2d96`, not exactly `#4d2dad` (HSL ~268,60%,34%). Minor fix.
-- ⚠️ `--secondary: 264 100% 81%` — brand says `#9964ff` which is HSL(264,100%,70%). Currently HSL(264,100%,81%) ≈ `#c0a0ff`. **Needs fix to match #9964ff → `264 100% 70%`**.
-- ✅ Logo horizontal, coração puzzle, ícone — all referenced correctly in Navbar, Footer, TopBanner
+Remover do dropdown: Divulgação, Privacidade LGPD, Cookies, Como Funciona.
 
-### Fixes in `src/index.css`:
-- `--secondary` from `264 100% 81%` → `264 100% 70%` (matches `#9964ff`)
-- `--primary-dark` from `267 60% 37%` → `268 60% 34%` (matches `#4d2dad`)
+Novo conteúdo do dropdown Transparência:
+- Sobre Ajudaki → `/sobre`
+- Segurança → `/seguranca`
+- Pagamentos e Destino Certo → `/destino-certo`
 
-## Resumo de arquivos modificados
-- `src/index.css` — corrigir `--secondary` e `--primary-dark`
-- `src/components/ComoFunciona.tsx` — `border-t`
-- `src/components/Campanhas.tsx` — `border-t`
-- `src/components/HistoriasImpacto.tsx` — `border-t`
+Mover "Divulgação" para dentro da página "Como Funciona" (conteúdo, não navbar).
+
+### 3. Criar página Termos de Uso
+
+Nova página `/termos-de-uso` com texto genérico de termos de uso para plataforma de doações. Adicionar rota no `App.tsx`.
+
+### 4. Separadores entre seções — linha sutil com degradê da marca
+
+Substituir o `border-t border-border/40` atual por um `<div>` decorativo com gradiente horizontal `primary → accent → primary` (roxo → laranja → roxo), altura de 1-2px, com opacidade suave. Adicionar `py-24` (mais respiro) nas seções em vez do `py-20` atual.
+
+### 5. Mover links existentes
+
+- "Como Funciona" no navbar continua apontando para `#como-funciona` (seção da home)
+- A página `/como-funciona-ajudaki` fica acessível pelo footer "Plataforma > Como funciona"
+
+## Arquivos modificados
+- `src/components/Footer.tsx` — redesign completo
+- `src/components/Navbar.tsx` — reduzir dropdown Transparência
+- `src/pages/TermosDeUso.tsx` — nova página
+- `src/App.tsx` — adicionar rota `/termos-de-uso`
+- `src/components/ComoFunciona.tsx` — aumentar padding, separador degradê
+- `src/components/Campanhas.tsx` — idem
+- `src/components/HistoriasImpacto.tsx` — idem
 
