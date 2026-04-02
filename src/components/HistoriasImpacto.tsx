@@ -37,7 +37,7 @@ const stories = [
 
 const HistoriasImpacto = () => {
   return (
-    <section id="impacto" className="bg-muted py-20">
+    <section id="impacto" className="bg-muted py-20 border-t border-border/40">
       <div className="container mx-auto px-4">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
           Histórias de Impacto
