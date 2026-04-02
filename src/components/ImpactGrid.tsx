@@ -31,8 +31,7 @@ const ImpactGrid = () => {
             <img src={impactMeals} alt="Refeições garantidas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="relative z-10 h-full flex flex-col justify-end p-5">
-              <p className="font-heading text-4xl font-extrabold text-white">+18.500</p>
-              <p className="text-white font-semibold text-sm">refeições garantidas.</p>
+              <p className="text-white font-semibold text-sm">Refeições garantidas.</p>
               <p className="text-white/80 text-xs mt-1">Com a sua ajuda, mais<br />mesas seguem cheias.</p>
               <a href="#" className="text-accent text-xs font-semibold mt-3 hover:underline">Doe Agora →</a>
             </div>
@@ -41,7 +40,6 @@ const ImpactGrid = () => {
           {/* Col 2 Row 1: +12.000 Famílias — roxo sólido */}
           <AnimatedCard delay={100} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-4">
             <div className="mt-auto">
-              <p className="font-heading text-2xl font-extrabold text-white">+12.000</p>
               <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Famílias foram ajudadas com muitas doações voluntárias.</p>
               <a href="#" className="text-accent text-[11px] font-semibold mt-2 inline-block hover:underline">Saiba Mais →</a>
             </div>
@@ -112,7 +110,6 @@ const ImpactGrid = () => {
             <img src={impactTrees} alt="Árvores plantadas" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
             <div className="relative z-10 h-full flex flex-col justify-end p-5">
-              <p className="font-heading text-3xl font-extrabold text-white">+10.000</p>
               <p className="text-white font-semibold text-xs">Árvores plantadas</p>
               <p className="text-white/80 text-[11px] mt-1">Graças às pessoas<br />que acreditam no futuro.</p>
               <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Saiba Mais</a>
@@ -134,7 +131,6 @@ const ImpactGrid = () => {
 
           {/* Col 5 Row 2: +50.000 roxo sólido */}
           <AnimatedCard delay={350} className="rounded-2xl overflow-hidden bg-primary flex flex-col justify-end p-5">
-            <p className="font-heading text-3xl font-extrabold text-white">+50.000</p>
             <p className="text-white/90 text-[11px] mt-1 leading-relaxed">Pessoas apoiadas por campanhas verificadas pela Ajudaki. ✅</p>
             <a href="#" className="text-accent text-xs font-semibold mt-2 hover:underline">Seja + um Apoiador →</a>
           </AnimatedCard>
@@ -162,10 +158,10 @@ const ImpactGrid = () => {
 
         <div className="grid grid-cols-2 gap-3">
           {[
-            { img: impactMeals, num: "+18.500", label: "refeições garantidas", overlay: "from-black/70 to-transparent" },
-            { img: null, num: "+12.000", label: "famílias assistidas", overlay: "" },
-            { img: impactTrees, num: "+10.000", label: "árvores plantadas", overlay: "from-primary/90 to-transparent" },
-            { img: null, num: "+50.000", label: "pessoas apoiadas", overlay: "" },
+            { img: impactMeals, label: "Refeições garantidas", overlay: "from-black/70 to-transparent" },
+            { img: null, label: "Famílias assistidas", overlay: "" },
+            { img: impactTrees, label: "Árvores plantadas", overlay: "from-primary/90 to-transparent" },
+            { img: null, label: "Pessoas apoiadas", overlay: "" },
           ].map((item, i) => (
             <div
               key={item.label}
@@ -179,8 +175,7 @@ const ImpactGrid = () => {
                 </>
               )}
               <div className="relative z-10">
-                <p className="font-heading text-2xl font-extrabold text-white">{item.num}</p>
-                <p className="text-white/90 text-xs font-medium">{item.label}</p>
+                <p className="text-white/90 text-sm font-semibold">{item.label}</p>
               </div>
             </div>
           ))}
