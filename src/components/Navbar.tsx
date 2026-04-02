@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Search, Info, Shield, Megaphone, FileText, Cookie, HelpCircle, Target } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Info, Shield, Target } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const navLinks = [
