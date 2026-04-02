@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import MobileAutoCarousel from "@/components/animations/MobileAutoCarousel";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import campaignEducation from "@/assets/campaign-education.jpg";
