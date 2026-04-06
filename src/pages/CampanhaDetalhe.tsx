@@ -101,6 +101,24 @@ const CampanhaDetalhe = () => {
                 {campaign.fullDescription}
               </p>
             </div>
+
+            {/* Fotos - versão grande */}
+            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <ImageIcon className="h-5 w-5 text-primary" />
+                  <h3 className="font-heading font-semibold text-foreground">Fotos</h3>
+                </div>
+                <Badge variant="secondary">{campaign.photos.length}</Badge>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {campaign.photos.map((photo, i) => (
+                  <div key={i} className="aspect-video rounded-xl overflow-hidden">
+                    <img src={photo} alt={`Foto ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Sidebar */}
