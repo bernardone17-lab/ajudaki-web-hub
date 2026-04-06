@@ -1,43 +1,9 @@
-import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import MobileAutoCarousel from "@/components/animations/MobileAutoCarousel";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import campaignEducation from "@/assets/campaign-education.jpg";
-import campaignHealth from "@/assets/campaign-health.jpg";
-import campaignSocial from "@/assets/campaign-social.jpg";
-
-const campaigns = [
-  {
-    image: campaignEducation,
-    tag: "Educação",
-    title: "Material escolar para 500 crianças",
-    description: "Ajude crianças em vulnerabilidade a terem acesso a materiais escolares de qualidade.",
-    raised: 12450,
-    goal: 25000,
-    daysLeft: 18,
-  },
-  {
-    image: campaignHealth,
-    tag: "Saúde",
-    title: "Equipamentos para clínica comunitária",
-    description: "Uma clínica que atende mais de 200 famílias precisa de novos equipamentos médicos.",
-    raised: 38200,
-    goal: 50000,
-    daysLeft: 7,
-  },
-  {
-    image: campaignSocial,
-    tag: "Assistência Social",
-    title: "Abrigo para idosos em situação de rua",
-    description: "Construir um espaço seguro e acolhedor para idosos em situação de vulnerabilidade.",
-    raised: 67800,
-    goal: 100000,
-    daysLeft: 32,
-  },
-];
-
-const formatCurrency = (v: number) =>
-  v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+import { Badge } from "@/components/ui/badge";
+import { campaigns, formatCurrency } from "@/data/campaigns";
 
 const Campanhas = () => {
   return (
@@ -54,9 +20,10 @@ const Campanhas = () => {
           {campaigns.map((c) => {
             const pct = Math.round((c.raised / c.goal) * 100);
             return (
-              <div
-                key={c.title}
-                className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-lg transition-shadow"
+              <Link
+                key={c.id}
+                to={`/campanhas/${c.id}`}
+                className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-lg transition-shadow block"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -83,7 +50,7 @@ const Campanhas = () => {
                   </div>
                   <Button className="w-full mt-1">Doar Agora</Button>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </MobileAutoCarousel>

@@ -12,6 +12,8 @@ import TermosDeUso from "./pages/TermosDeUso.tsx";
 import FAQ from "./pages/FAQ.tsx";
 import Contato from "./pages/Contato.tsx";
 import ONGs from "./pages/ONGs.tsx";
+import CampanhasPage from "./pages/CampanhasPage.tsx";
+import CampanhaDetalhe from "./pages/CampanhaDetalhe.tsx";
 
 const App = () => (
   <BrowserRouter>
@@ -28,6 +30,8 @@ const App = () => (
       <Route path="/faq" element={<FAQ />} />
       <Route path="/contato" element={<Contato />} />
       <Route path="/ongs" element={<ONGs />} />
+      <Route path="/campanhas" element={<CampanhasPage />} />
+      <Route path="/campanhas/:id" element={<CampanhaDetalhe />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>

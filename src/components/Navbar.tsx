@@ -7,6 +7,7 @@ import logoHorizontal from "@/assets/logo-horizontal.png";
 const navLinks = [
   { label: "Sobre", href: "#hero" },
   { label: "Como Funciona", href: "#como-funciona" },
+  { label: "Campanhas", href: "/campanhas", isRoute: true },
   { label: "Depoimentos", href: "#impacto" },
 ];
 
