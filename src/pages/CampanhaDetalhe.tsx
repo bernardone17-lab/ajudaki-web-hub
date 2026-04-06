@@ -124,11 +124,6 @@ const CampanhaDetalhe = () => {
               <ArrowLeft className="mr-1 h-4 w-4" /> Voltar às campanhas
             </Link>
 
-            {/* Mobile-only: Progress + Doar */}
-            <div className="lg:hidden">
-              <ProgressCard />
-            </div>
-
             <div>
               <h2 className="font-heading text-xl font-semibold text-foreground mb-4">
                 Sobre esta campanha
@@ -136,6 +131,11 @@ const CampanhaDetalhe = () => {
               <p className="text-muted-foreground leading-relaxed">
                 {campaign.fullDescription}
               </p>
+            </div>
+
+            {/* Mobile-only: Progress + Doar */}
+            <div className="lg:hidden">
+              <ProgressCard />
             </div>
 
             {/* Fotos - versão grande */}
