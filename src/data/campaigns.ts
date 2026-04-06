@@ -17,6 +17,7 @@ export interface Campaign {
   organizerDesc: string;
   location: string;
   createdAt: string;
+  pixKey: string;
 }
 
 export const campaigns: Campaign[] = [
@@ -36,6 +37,7 @@ export const campaigns: Campaign[] = [
     organizerDesc: "Atuando desde 2018 na periferia de São Paulo, já beneficiou mais de 3.000 crianças.",
     location: "São Paulo, SP",
     createdAt: "15 de março de 2026",
+    pixKey: "material-escolar@ajudaki.com",
   },
   {
     id: "equipamentos-clinica-comunitaria",
@@ -53,6 +55,7 @@ export const campaigns: Campaign[] = [
     organizerDesc: "Clínica comunitária em BH que atende gratuitamente famílias de baixa renda desde 2015.",
     location: "Belo Horizonte, MG",
     createdAt: "20 de fevereiro de 2026",
+    pixKey: "clinica-esperanca@ajudaki.com",
   },
   {
     id: "abrigo-idosos-situacao-rua",
@@ -70,6 +73,7 @@ export const campaigns: Campaign[] = [
     organizerDesc: "ONG de Curitiba dedicada ao acolhimento de pessoas em situação de vulnerabilidade desde 2012.",
     location: "Curitiba, PR",
     createdAt: "10 de janeiro de 2026",
+    pixKey: "maos-que-acolhem@ajudaki.com",
   },
 ];
 
