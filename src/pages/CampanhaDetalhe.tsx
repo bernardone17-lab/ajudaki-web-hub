@@ -16,7 +16,6 @@ import {
   MapPin,
   Tag,
   Link2,
-  MoreHorizontal,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
@@ -61,6 +60,38 @@ const CampanhaDetalhe = () => {
     window.open(urls[platform], "_blank", "noopener,noreferrer");
   };
 
+  const ProgressCard = () => (
+    <div className="bg-card rounded-2xl p-6 shadow-sm space-y-5">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <span>{pct}% arrecadado</span>
+          <span className="flex items-center gap-1">
+            <Calendar className="h-3.5 w-3.5" />
+            {campaign.daysLeft} dias restantes
+          </span>
+        </div>
+        <Progress value={pct} className="h-3 bg-muted [&>div]:bg-primary" />
+      </div>
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-xs text-muted-foreground">Arrecadado</p>
+          <p className="font-heading font-bold text-foreground text-lg">
+            {formatCurrency(campaign.raised)}
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-xs text-muted-foreground">Meta</p>
+          <p className="font-heading font-bold text-foreground text-lg">
+            {formatCurrency(campaign.goal)}
+          </p>
+        </div>
+      </div>
+      <Button className="w-full" size="lg">
+        Doar Agora
+      </Button>
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
@@ -93,6 +124,11 @@ const CampanhaDetalhe = () => {
               <ArrowLeft className="mr-1 h-4 w-4" /> Voltar às campanhas
             </Link>
 
+            {/* Mobile-only: Progress + Doar */}
+            <div className="lg:hidden">
+              <ProgressCard />
+            </div>
+
             <div>
               <h2 className="font-heading text-xl font-semibold text-foreground mb-4">
                 Sobre esta campanha
@@ -123,39 +159,10 @@ const CampanhaDetalhe = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Progress + Doar */}
-            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-5">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{pct}% arrecadado</span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5" />
-                    {campaign.daysLeft} dias restantes
-                  </span>
-                </div>
-                <Progress value={pct} className="h-3 bg-muted [&>div]:bg-primary" />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-muted-foreground">Arrecadado</p>
-                  <p className="font-heading font-bold text-foreground text-lg">
-                    {formatCurrency(campaign.raised)}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-xs text-muted-foreground">Meta</p>
-                  <p className="font-heading font-bold text-foreground text-lg">
-                    {formatCurrency(campaign.goal)}
-                  </p>
-                </div>
-              </div>
-
-              <Button className="w-full" size="lg">
-                Doar Agora
-              </Button>
+            {/* Progress + Doar (desktop only) */}
+            <div className="hidden lg:block">
+              <ProgressCard />
             </div>
-
 
             {/* Organizador */}
             <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
@@ -175,6 +182,37 @@ const CampanhaDetalhe = () => {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground">{campaign.organizerDesc}</p>
+            </div>
+
+            {/* Informações */}
+            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-2">
+                <Info className="h-4 w-4 text-primary" />
+                <h3 className="font-heading font-semibold text-foreground text-sm">Informações</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-muted-foreground">
+                    <Tag className="h-3.5 w-3.5" />
+                    <span className="text-xs">Categoria</span>
+                  </div>
+                  <p className="font-medium text-foreground text-sm">{campaign.tag}</p>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5" />
+                    <span className="text-xs">Localização</span>
+                  </div>
+                  <p className="font-medium text-foreground text-sm">{campaign.location}</p>
+                </div>
+                <div className="space-y-1 col-span-2">
+                  <div className="flex items-center gap-1.5 text-muted-foreground">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span className="text-xs">Criada em</span>
+                  </div>
+                  <p className="font-medium text-foreground text-sm">{campaign.createdAt}</p>
+                </div>
+              </div>
             </div>
 
             {/* Ajude compartilhando */}
@@ -216,37 +254,6 @@ const CampanhaDetalhe = () => {
                   <Link2 className="h-3.5 w-3.5 mr-1" />
                   Copiar link
                 </Button>
-              </div>
-            </div>
-
-            {/* Informações */}
-            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
-              <div className="flex items-center gap-2">
-                <Info className="h-4 w-4 text-primary" />
-                <h3 className="font-heading font-semibold text-foreground text-sm">Informações</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-muted-foreground">
-                    <Tag className="h-3.5 w-3.5" />
-                    <span className="text-xs">Categoria</span>
-                  </div>
-                  <p className="font-medium text-foreground text-sm">{campaign.tag}</p>
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5" />
-                    <span className="text-xs">Localização</span>
-                  </div>
-                  <p className="font-medium text-foreground text-sm">{campaign.location}</p>
-                </div>
-                <div className="space-y-1 col-span-2">
-                  <div className="flex items-center gap-1.5 text-muted-foreground">
-                    <Calendar className="h-3.5 w-3.5" />
-                    <span className="text-xs">Criada em</span>
-                  </div>
-                  <p className="font-medium text-foreground text-sm">{campaign.createdAt}</p>
-                </div>
               </div>
             </div>
           </div>
