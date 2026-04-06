@@ -5,6 +5,7 @@ import campaignSocial from "@/assets/campaign-social.jpg";
 export interface Campaign {
   id: string;
   image: string;
+  photos: string[];
   tag: string;
   title: string;
   description: string;
@@ -14,12 +15,15 @@ export interface Campaign {
   daysLeft: number;
   organizer: string;
   organizerDesc: string;
+  location: string;
+  createdAt: string;
 }
 
 export const campaigns: Campaign[] = [
   {
     id: "material-escolar-500-criancas",
     image: campaignEducation,
+    photos: [campaignEducation, campaignEducation, campaignEducation],
     tag: "Educação",
     title: "Material escolar para 500 crianças",
     description: "Ajude crianças em vulnerabilidade a terem acesso a materiais escolares de qualidade.",
@@ -30,10 +34,13 @@ export const campaigns: Campaign[] = [
     daysLeft: 18,
     organizer: "ONG Educação para Todos",
     organizerDesc: "Atuando desde 2018 na periferia de São Paulo, já beneficiou mais de 3.000 crianças.",
+    location: "São Paulo, SP",
+    createdAt: "15 de março de 2026",
   },
   {
     id: "equipamentos-clinica-comunitaria",
     image: campaignHealth,
+    photos: [campaignHealth, campaignHealth, campaignHealth],
     tag: "Saúde",
     title: "Equipamentos para clínica comunitária",
     description: "Uma clínica que atende mais de 200 famílias precisa de novos equipamentos médicos.",
@@ -44,10 +51,13 @@ export const campaigns: Campaign[] = [
     daysLeft: 7,
     organizer: "Clínica Esperança",
     organizerDesc: "Clínica comunitária em BH que atende gratuitamente famílias de baixa renda desde 2015.",
+    location: "Belo Horizonte, MG",
+    createdAt: "20 de fevereiro de 2026",
   },
   {
     id: "abrigo-idosos-situacao-rua",
     image: campaignSocial,
+    photos: [campaignSocial, campaignSocial, campaignSocial],
     tag: "Assistência Social",
     title: "Abrigo para idosos em situação de rua",
     description: "Construir um espaço seguro e acolhedor para idosos em situação de vulnerabilidade.",
@@ -58,6 +68,8 @@ export const campaigns: Campaign[] = [
     daysLeft: 32,
     organizer: "Associação Mãos que Acolhem",
     organizerDesc: "ONG de Curitiba dedicada ao acolhimento de pessoas em situação de vulnerabilidade desde 2012.",
+    location: "Curitiba, PR",
+    createdAt: "10 de janeiro de 2026",
   },
 ];
 
