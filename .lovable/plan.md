@@ -1,47 +1,46 @@
 
 
-# Criar FAQ, Contato e Finalizar Páginas/Botões Pendentes
+# Criar Página de Campanhas + Página de Detalhe da Campanha
 
-## Páginas a criar
+## O que será feito
 
-### 1. FAQ (`/faq`)
-Página com accordion usando o texto fornecido (8 perguntas sobre doações, taxas, anonimato, comprovantes, fraude). Layout com PageLayout, hero section com título "Perguntas Frequentes" e accordion estilizado com as cores da marca.
+1. **Dados centralizados** — Extrair os dados das campanhas para `src/data/campaigns.ts` com `id` (slug) em cada campanha, reutilizável na home e nas novas páginas.
 
-### 2. Contato (`/contato`)
-Baseado no layout do projeto [Agência Criativa Digital](/projects/95240fd2-6118-41b6-9dbf-16be3feba9e0): hero com título "Fale Conosco", grid 1/3 + 2/3 com:
-- **Coluna esquerda**: cards com WhatsApp, e-mail, telefone e redes sociais do Ajudaki
-- **Coluna direita**: formulário com campos Nome, E-mail, Telefone, Assunto (select: Dúvida, Sugestão, Problema, Parceria, Outro), Mensagem e botão Enviar
+2. **Página `/campanhas`** — Lista todas as campanhas ativas com:
+   - Hero com título "Explorar Campanhas" e subtítulo
+   - Filtros por categoria (Todas, Educação, Saúde, Assistência Social) usando Tabs do shadcn
+   - Grid 3 colunas (desktop) / 1 coluna (mobile) com os mesmos cards estilizados
+   - Cada card é clicável e leva a `/campanhas/:id`
 
-Sem Supabase por enquanto — apenas toast de sucesso no submit. Sem zod (simplificar). Adaptado para a identidade visual Ajudaki (cores roxo/laranja, Poppins/Inter).
+3. **Página `/campanhas/:id`** — Detalhe da campanha com:
+   - Imagem grande no topo (hero banner)
+   - Tag da categoria + título narrativo
+   - Barra de progresso com valores arrecadados / meta / dias restantes
+   - Descrição completa da campanha
+   - Botão "Doar Agora" em destaque
+   - Seção lateral (desktop) ou abaixo (mobile) com informações do organizador
 
-### 3. ONGs (`/ongs`)
-Página placeholder simples com título "ONGs Parceiras" e texto "Em breve você poderá conhecer todas as ONGs parceiras do Ajudaki."
-
-## Links/botões a conectar
-
-### Footer
-- "Contato" → `/contato`
-- "FAQ" → `/faq`
-- "ONGs" → `/ongs`
-- "Criar campanha" → `/contato` (por enquanto)
-
-### Navbar
-- Botões "Criar Conta" e "Acessa sua Conta" → mantém `#` (sem auth ainda)
-- Busca (Search icon) → mantém `#` (sem funcionalidade ainda)
+4. **Links atualizados**:
+   - Footer "Explorar Campanhas" → `/campanhas`
+   - Cards da home (seção Campanhas em Destaque) viram links para `/campanhas/:id`
+   - Navbar: adicionar link "Campanhas" nos navLinks
 
 ## Arquivos
 
 | Arquivo | Ação |
 |---|---|
-| `src/pages/FAQ.tsx` | Criar — accordion com 8 perguntas |
-| `src/pages/Contato.tsx` | Criar — layout igual Agência Criativa, adaptado Ajudaki |
-| `src/pages/ONGs.tsx` | Criar — placeholder |
-| `src/App.tsx` | Adicionar rotas `/faq`, `/contato`, `/ongs` |
-| `src/components/Footer.tsx` | Atualizar links Contato→`/contato`, FAQ→`/faq`, ONGs→`/ongs`, Criar campanha→`/contato` |
+| `src/data/campaigns.ts` | Criar — dados centralizados com id/slug |
+| `src/pages/CampanhasPage.tsx` | Criar — listagem com filtros |
+| `src/pages/CampanhaDetalhe.tsx` | Criar — página de detalhe |
+| `src/App.tsx` | Adicionar rotas `/campanhas` e `/campanhas/:id` |
+| `src/components/Campanhas.tsx` | Importar dados de `campaigns.ts`, tornar cards clicáveis com `<Link>` |
+| `src/components/Footer.tsx` | "Explorar Campanhas" → `/campanhas` |
+| `src/components/Navbar.tsx` | Adicionar "Campanhas" aos navLinks |
 
 ## Detalhes técnicos
-- FAQ usa `Accordion` do shadcn/ui (já existe em `src/components/ui/accordion.tsx`)
-- Contato usa `Card`, `Input`, `Textarea`, `Select`, `Label`, `Button` (todos já existem)
-- Todas as páginas usam `PageLayout` existente
-- Contato terá layout customizado (não usa o `max-w-4xl` do PageLayout padrão — usará Navbar+Footer diretamente com container mais largo)
+- `CampanhasPage` usa `Tabs` + `TabsList` + `TabsTrigger` + `TabsContent` para filtros
+- `CampanhaDetalhe` usa `useParams` para pegar o slug e encontrar a campanha nos dados
+- Cards clicáveis com `<Link to={/campanhas/${c.id}}>` wrapping o card
+- Todas as páginas usam `PageLayout` ou Navbar+Footer direto
+- Identidade visual: cores `primary`/`accent`, Poppins headings, Inter body, fundo `#f2f0fc`
 
