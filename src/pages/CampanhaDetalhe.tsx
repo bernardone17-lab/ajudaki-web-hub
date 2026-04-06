@@ -156,23 +156,6 @@ const CampanhaDetalhe = () => {
               </Button>
             </div>
 
-            {/* Fotos */}
-            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <ImageIcon className="h-4 w-4 text-primary" />
-                  <h3 className="font-heading font-semibold text-foreground text-sm">Fotos</h3>
-                </div>
-                <Badge variant="secondary" className="text-xs">{campaign.photos.length}</Badge>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {campaign.photos.map((photo, i) => (
-                  <div key={i} className="aspect-square rounded-lg overflow-hidden">
-                    <img src={photo} alt={`Foto ${i + 1}`} className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Organizador */}
             <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
