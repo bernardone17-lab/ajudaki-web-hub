@@ -39,7 +39,7 @@ const Footer = () => (
               <Link to="/contato" className="hover:text-background transition-colors">Criar campanha</Link>
             </li>
             <li>
-              <a href="/#campanhas" className="hover:text-background transition-colors">Explorar Campanhas</a>
+              <Link to="/campanhas" className="hover:text-background transition-colors">Explorar Campanhas</Link>
             </li>
           </ul>
         </div>
