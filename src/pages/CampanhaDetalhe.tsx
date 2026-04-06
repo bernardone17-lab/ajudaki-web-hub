@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,6 +7,13 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   ArrowLeft,
   Calendar,
@@ -15,13 +23,18 @@ import {
   Info,
   MapPin,
   Tag,
-  Link2,
+  Copy,
+  Facebook,
+  Linkedin,
+  Mail,
+  MessageCircle,
 } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const CampanhaDetalhe = () => {
   const { id } = useParams<{ id: string }>();
   const campaign = campaigns.find((c) => c.id === id);
+  const [shareOpen, setShareOpen] = useState(false);
 
   if (!campaign) {
     return (
@@ -44,21 +57,40 @@ const CampanhaDetalhe = () => {
 
   const pct = Math.round((campaign.raised / campaign.goal) * 100);
   const shareUrl = window.location.href;
-  const shareText = `Ajude esta campanha: ${campaign.title}`;
+  const shareText = `Olá! A campanha "${campaign.title}" precisa do seu apoio. Contribua e ajude a fazer a diferença!`;
+
+  const handleCopyPix = () => {
+    navigator.clipboard.writeText(campaign.pixKey);
+    toast.success("Chave PIX copiada!");
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(shareUrl);
+    toast.success("Link copiado!");
+  };
 
   const handleShare = (platform: string) => {
     const urls: Record<string, string> = {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+      messenger: `https://www.facebook.com/dialog/send?link=${encodeURIComponent(shareUrl)}&app_id=0`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+      email: `mailto:?subject=${encodeURIComponent(campaign.title)}&body=${encodeURIComponent(shareText + "\n\n" + shareUrl)}`,
     };
-    if (platform === "copy") {
-      navigator.clipboard.writeText(shareUrl);
-      toast({ title: "Link copiado!", description: "Cole onde quiser para compartilhar." });
-      return;
+    if (urls[platform]) {
+      window.open(urls[platform], "_blank", "noopener,noreferrer");
     }
-    window.open(urls[platform], "_blank", "noopener,noreferrer");
   };
+
+  const socialButtons = [
+    { id: "whatsapp", label: "WhatsApp", color: "bg-[#25D366]", icon: <MessageCircle className="h-5 w-5 text-white" /> },
+    { id: "facebook", label: "Facebook", color: "bg-[#1877F2]", icon: <Facebook className="h-5 w-5 text-white" /> },
+    { id: "twitter", label: "X", color: "bg-[#000000]", icon: <span className="text-white font-bold text-sm">𝕏</span> },
+    { id: "messenger", label: "Messenger", color: "bg-[#0084FF]", icon: <MessageCircle className="h-5 w-5 text-white" /> },
+    { id: "linkedin", label: "LinkedIn", color: "bg-[#0A66C2]", icon: <Linkedin className="h-5 w-5 text-white" /> },
+    { id: "email", label: "E-mail", color: "bg-muted-foreground", icon: <Mail className="h-5 w-5 text-white" /> },
+  ];
 
   const ProgressCard = () => (
     <div className="bg-card rounded-2xl p-6 shadow-sm space-y-5">
@@ -89,6 +121,28 @@ const CampanhaDetalhe = () => {
       <Button className="w-full" size="lg">
         Doar Agora
       </Button>
+
+      {/* PIX */}
+      <div className="space-y-3 pt-2 border-t border-border">
+        <p className="text-xs font-semibold text-muted-foreground tracking-widest text-center">
+          OU DOE VIA PIX
+        </p>
+        <div className="flex gap-2">
+          <Input
+            readOnly
+            value={campaign.pixKey}
+            className="text-sm bg-muted border-none"
+          />
+          <Button
+            variant="secondary"
+            size="icon"
+            className="shrink-0"
+            onClick={handleCopyPix}
+          >
+            <Copy className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 
@@ -138,7 +192,7 @@ const CampanhaDetalhe = () => {
               <ProgressCard />
             </div>
 
-            {/* Fotos - versão grande */}
+            {/* Fotos */}
             <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -215,50 +269,64 @@ const CampanhaDetalhe = () => {
               </div>
             </div>
 
-            {/* Ajude compartilhando */}
-            <div className="bg-card rounded-2xl p-6 shadow-sm space-y-4">
-              <div className="flex items-center gap-2">
-                <Share2 className="h-4 w-4 text-primary" />
-                <h3 className="font-heading font-semibold text-foreground text-sm">Ajude compartilhando</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Compartilhar pode ser tão importante quanto doar. Espalhe essa causa!
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  size="sm"
-                  className="bg-[#25D366] hover:bg-[#20bd5a] text-white"
-                  onClick={() => handleShare("whatsapp")}
-                >
-                  WhatsApp
-                </Button>
-                <Button
-                  size="sm"
-                  className="bg-[#1877F2] hover:bg-[#1565c0] text-white"
-                  onClick={() => handleShare("facebook")}
-                >
-                  Facebook
-                </Button>
-                <Button
-                  size="sm"
-                  className="bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white"
-                  onClick={() => handleShare("twitter")}
-                >
-                  Twitter
-                </Button>
-                <Button
-                  size="sm"
-                  variant="secondary"
-                  onClick={() => handleShare("copy")}
-                >
-                  <Link2 className="h-3.5 w-3.5 mr-1" />
-                  Copiar link
-                </Button>
-              </div>
-            </div>
+            {/* Botão Compartilhar */}
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full"
+              onClick={() => setShareOpen(true)}
+            >
+              <Share2 className="mr-2 h-5 w-5" />
+              Compartilhar esta campanha
+            </Button>
           </div>
         </div>
       </div>
+
+      {/* Dialog de Compartilhamento */}
+      <Dialog open={shareOpen} onOpenChange={setShareOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-heading">Compartilhamento rápido</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-5">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-foreground">Link da vaquinha:</p>
+              <div className="flex gap-2">
+                <Input readOnly value={shareUrl} className="text-sm bg-muted border-none" />
+                <Button variant="secondary" size="icon" className="shrink-0" onClick={handleCopyLink}>
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+
+            <p className="text-sm text-muted-foreground">
+              Compartilhe também nas redes sociais e alcance ainda mais doadores!
+            </p>
+
+            <div className="bg-muted/50 rounded-xl p-4">
+              <p className="text-sm text-foreground italic">
+                "{shareText}"
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+              {socialButtons.map((btn) => (
+                <button
+                  key={btn.id}
+                  onClick={() => handleShare(btn.id)}
+                  className="flex flex-col items-center gap-1.5 group"
+                >
+                  <div className={`${btn.color} w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    {btn.icon}
+                  </div>
+                  <span className="text-xs text-muted-foreground">{btn.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
