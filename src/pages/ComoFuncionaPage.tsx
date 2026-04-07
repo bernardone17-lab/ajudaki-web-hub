@@ -13,7 +13,7 @@ const passosAjudar = [
   "Explore campanhas: Navegue pelas causas disponíveis",
   "Escolha uma causa: Leia as histórias e escolha como ajudar",
   "Defina o valor: Doe qualquer quantia, por menor que seja",
-  "Pague com segurança: PIX, cartão ou boleto",
+  "Pague com segurança: PIX ou Cartão",
   "Acompanhe o impacto: Veja como sua doação fez a diferença",
 ];
 
