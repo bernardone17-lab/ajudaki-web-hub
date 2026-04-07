@@ -74,7 +74,7 @@ const Seguranca = () => (
       <section className="rounded-2xl bg-primary text-primary-foreground p-8 md:p-12 space-y-4 text-center">
         <p className="text-sm font-semibold uppercase tracking-widest opacity-80"></p>
         <h2 className="font-heading text-2xl md:text-3xl font-bold">
-          Conectamos quem ajuda a quem mais precisa. 💜
+          Conectamos quem ajuda a quem mais precisa.
         </h2>
         <p className="max-w-2xl mx-auto text-sm leading-relaxed opacity-90">
           O AJUDAKI é operado pela N3X INTERMEDIAÇÕES LTDA (CNPJ 61.182.936/0001-75), uma empresa brasileira legalmente constituída. Verificamos identidades, monitoramos causas ativas e mantemos registro de cada transação realizada na plataforma. Acreditamos que transparência começa pela identidade, e você tem o direito de saber com quem está lidando.
