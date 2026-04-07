@@ -18,7 +18,7 @@ const sections = [
   },
   {
     title: "Causas verificadas",
-    text: "Antes de qualquer causa ser publicada, nossa equipe analisa os dados e documentos do cadastrante. Não publicamos tudo que recebemos — só o que passou pela nossa verificação.",
+    text: "Antes de qualquer causa ser publicada, nossa equipe analisa os dados e documentos do cadastrante. Não publicamos tudo que recebemos, só o que passou pela nossa verificação.",
   },
   {
     title: "Você está protegido",
@@ -80,7 +80,7 @@ const Seguranca = () => (
           Conectamos quem ajuda a quem mais precisa. 💜
         </h2>
         <p className="max-w-2xl mx-auto text-sm leading-relaxed opacity-90">
-          O AJUDAKI é operado pela N3X INTERMEDIAÇÕES LTDA (CNPJ 61.182.936/0001-75), uma empresa brasileira legalmente constituída. Verificamos identidades, monitoramos causas ativas e mantemos registro de cada transação realizada na plataforma. Acreditamos que transparência começa pela identidade — e você tem o direito de saber com quem está lidando.
+          O AJUDAKI é operado pela N3X INTERMEDIAÇÕES LTDA (CNPJ 61.182.936/0001-75), uma empresa brasileira legalmente constituída. Verificamos identidades, monitoramos causas ativas e mantemos registro de cada transação realizada na plataforma. Acreditamos que transparência começa pela identidade, e você tem o direito de saber com quem está lidando.
         </p>
       </section>
     </div>
