@@ -1,33 +1,34 @@
+# Reestruturar Cabeçalho (Navbar)
 
+## Estrutura atual
 
-# Adicionar PIX ao Card de Doação + Compartilhar via Pop-up
+`Sobre | Como Funciona | Campanhas | Depoimentos | Transparência ▾`
 
-## Mudanças
+## Nova estrutura
 
-### 1. Card de doação (ProgressCard) — adicionar seção PIX
-Abaixo do botão "Doar Agora", adicionar:
-- Texto "OU DOE VIA PIX" em caps, cor muted
-- Input readonly com a chave PIX da campanha (ex: `slug@ajudaki.com`)
-- Botão "Copiar chave PIX" com ícone de cópia, fundo lilás claro, que copia para clipboard e mostra toast
+`Como Funciona ▾ | Causas | Criar Campanha`
 
-### 2. Substituir card "Ajude compartilhando" por botão grande
-- Remover o card inteiro de compartilhamento (linhas 218-258)
-- No lugar, colocar um único `Button` largo: "Compartilhar esta campanha" com ícone Share2
-- Estilo: `w-full`, variant outline ou secondary, tamanho `lg`
+### Dropdown "Como Funciona"
 
-### 3. Pop-up de compartilhamento (Dialog)
-Ao clicar no botão, abre um `Dialog` com:
-- Título "Compartilhamento rápido" + botão X para fechar
-- "Link da vaquinha:" + input readonly com URL + botão copiar
-- Texto motivacional: "Compartilhe também nas redes sociais e alcance ainda mais doadores!"
-- Mensagem: "Olá! A campanha '{title}' precisa do seu apoio..."
-- Grid de ícones circulares: Facebook, WhatsApp, X (Twitter), Messenger, LinkedIn, E-mail
-- Cada ícone com cor da marca e label abaixo
+O dropdown herda os itens do antigo "Transparência" + novo item "O Ajudaki":
 
-### 4. Adicionar campo `pixKey` ao Campaign interface
-- Novo campo string no interface e dados: ex `"nome-da-campanha@ajudaki.com"`
+- **O Ajudaki** → `/sobre` (ícone Info) — "Conheça a plataforma"
+- **Segurança** → `/seguranca` — "Como protegemos suas doações"
+- **Pagamentos e Destino Certo** → `/destino-certo` — "Para onde vai sua doação"
+- **Como Funciona** → `/como-funciona-ajudaki` (ícone existente) — "Veja o passo a passo"
 
-## Arquivos modificados
-- `src/data/campaigns.ts` — adicionar `pixKey` ao interface e dados mock
-- `src/pages/CampanhaDetalhe.tsx` — PIX no ProgressCard, remover card compartilhar, adicionar botão + Dialog com ícones de redes sociais
+### Links diretos
 
+- **Causas** → `/campanhas` (renomeia "Campanhas")
+- **Criar Campanha** → nova rota ou âncora (por enquanto pode ser link placeholder)
+
+## Arquivo modificado
+
+- `src/components/Navbar.tsx`
+  - Remover `navLinks` array antigo e `transparenciaLinks`
+  - Criar novo array `comoFuncionaLinks` com os 4-5 itens do dropdown
+  - Renomear dropdown de "Transparência" para "Como Funciona"
+  - Adicionar links diretos "Causas" (`/campanhas`) e "Criar Campanha"
+  - Atualizar menu mobile com a mesma estrutura
+
+> **Dúvida**: "O Ajudaki" deve apontar para `/sobre` (mesma página do antigo "Sobre Ajudaki") ou para uma rota diferente? Se for a mesma, posso unificar os dois itens. Caso contrário, preciso saber a rota.
