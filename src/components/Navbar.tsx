@@ -1,26 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Search, Info, Shield, Target } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Info, Shield, Target, Zap, PlusCircle } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
-const navLinks = [
-  { label: "Sobre", href: "#hero" },
-  { label: "Como Funciona", href: "#como-funciona" },
-  { label: "Campanhas", href: "/campanhas", isRoute: true },
-  { label: "Depoimentos", href: "#impacto" },
-];
-
-const transparenciaLinks = [
-  { label: "Sobre Ajudaki", href: "/sobre", icon: Info, desc: "Nossa história, missão e valores" },
+const comoFuncionaLinks = [
+  { label: "O Ajudaki", href: "/sobre", icon: Info, desc: "Conheça a plataforma" },
   { label: "Segurança", href: "/seguranca", icon: Shield, desc: "Como protegemos suas doações" },
   { label: "Pagamentos e Destino Certo", href: "/destino-certo", icon: Target, desc: "Para onde vai sua doação" },
+  { label: "Como Funciona", href: "/como-funciona-ajudaki", icon: Zap, desc: "Veja o passo a passo" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileTransparencia, setMobileTransparencia] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -38,39 +32,19 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 px-4 relative">
         {/* Left links - desktop */}
         <ul className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              {link.isRoute ? (
-                <Link
-                  to={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </a>
-              )}
-            </li>
-          ))}
-
-          {/* Transparência dropdown */}
+          {/* Como Funciona dropdown */}
           <li className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              Transparência
+              Como Funciona
               <ChevronDown className={`h-4 w-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
 
             {dropdownOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[520px] bg-card border border-border rounded-2xl shadow-xl p-4 grid grid-cols-2 gap-2 animate-fade-in">
-                {transparenciaLinks.map((item) => (
+                {comoFuncionaLinks.map((item) => (
                   <Link
                     key={item.href}
                     to={item.href}
@@ -88,6 +62,24 @@ const Navbar = () => {
                 ))}
               </div>
             )}
+          </li>
+
+          <li>
+            <Link
+              to="/campanhas"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Causas
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/criar-campanha"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Criar Campanha
+            </Link>
           </li>
         </ul>
 
@@ -116,42 +108,20 @@ const Navbar = () => {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-card border-b border-border px-4 pb-4 space-y-3">
-          {navLinks.map((link) =>
-            link.isRoute ? (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-primary py-1"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-primary py-1"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            )
-          )}
-
           <button
-            onClick={() => setMobileTransparencia(!mobileTransparencia)}
+            onClick={() => setMobileDropdown(!mobileDropdown)}
             className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary py-1"
           >
-            Transparência
-            <ChevronDown className={`h-4 w-4 transition-transform ${mobileTransparencia ? "rotate-180" : ""}`} />
+            Como Funciona
+            <ChevronDown className={`h-4 w-4 transition-transform ${mobileDropdown ? "rotate-180" : ""}`} />
           </button>
-          {mobileTransparencia && (
+          {mobileDropdown && (
             <div className="pl-4 space-y-1">
-              {transparenciaLinks.map((item) => (
+              {comoFuncionaLinks.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => { setOpen(false); setMobileTransparencia(false); }}
+                  onClick={() => { setOpen(false); setMobileDropdown(false); }}
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary py-1.5"
                 >
                   <item.icon className="h-4 w-4 text-primary" />
@@ -160,6 +130,22 @@ const Navbar = () => {
               ))}
             </div>
           )}
+
+          <Link
+            to="/campanhas"
+            className="block text-sm font-medium text-muted-foreground hover:text-primary py-1"
+            onClick={() => setOpen(false)}
+          >
+            Causas
+          </Link>
+
+          <Link
+            to="/criar-campanha"
+            className="block text-sm font-medium text-muted-foreground hover:text-primary py-1"
+            onClick={() => setOpen(false)}
+          >
+            Criar Campanha
+          </Link>
 
           <div className="flex gap-2 pt-2">
             <Button size="sm" className="flex-1">
