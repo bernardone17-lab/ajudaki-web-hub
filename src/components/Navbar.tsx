@@ -5,9 +5,8 @@ import { Menu, X, ChevronDown, Search, Info, Shield, Target, Zap, PlusCircle } f
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const comoFuncionaLinks = [
-  { label: "O Ajudaki", href: "/sobre", icon: Info, desc: "Conheça a plataforma" },
+  { label: "O Ajudaki", href: "/sobre", icon: Info, desc: "Saiba mais sobre nós" },
   { label: "Segurança e Transparência", href: "/seguranca", icon: Shield, desc: "Como protegemos suas doações" },
-  { label: "Pagamentos e Destino Certo", href: "/destino-certo", icon: Target, desc: "Para onde vai sua doação" },
   { label: "Como Funciona", href: "/como-funciona-ajudaki", icon: Zap, desc: "Veja o passo a passo" },
 ];
 
