@@ -31,9 +31,6 @@ const Seguranca = () => (
     <div className="space-y-16">
       {/* Header */}
       <header className="text-center space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-          Saiba mais sobre nossa
-        </p>
         <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-foreground">
           Segurança e Transparência
         </h1>
